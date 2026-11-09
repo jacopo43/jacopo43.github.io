@@ -1,94 +1,273 @@
-<!doctype html>
+<!-- Academic portfolio: edit content here; translations are in script.js. -->
+<!DOCTYPE html>
 <html lang="it">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#101827" />
-  <meta name="description" content="Sito personale accademico: ricerca, progetti, pubblicazioni e contatti." />
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content="Nome Cognome — Research & Data" />
-  <meta property="og:description" content="Research, publications and projects." />
-  <title>Nome Cognome · Research & Data</title>
-  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
-  <link rel="stylesheet" href="style.css" />
-  <script src="script.js" defer></script>
-</head>
-<body>
-  <a class="skip-link" href="#main" data-i18n="skip">Vai al contenuto</a>
-  <div class="ambient ambient-one" aria-hidden="true"></div>
-  <div class="ambient ambient-two" aria-hidden="true"></div>
-  <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="#home" aria-label="Homepage"><span class="brand-mark">NC<span class="brand-dot">.</span></span><span class="brand-word">academic<span class="brand-dot">/</span>site</span></a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Apri menu"><span></span><span></span><span></span></button>
-      <nav id="site-nav" class="site-nav" aria-label="Navigazione principale">
-        <a href="#about" data-i18n="navAbout">Chi sono</a>
-        <a href="#research" data-i18n="navResearch">Ricerca</a>
-        <a href="#projects" data-i18n="navProjects">Progetti</a>
-        <a href="#publications" data-i18n="navPublications">Pubblicazioni</a>
-        <a href="#contact" data-i18n="navContact">Contatti</a>
+  <head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1" name="viewport"/>
+    <meta content="#f8f7f4" name="theme-color"/>
+    <meta content="Sito personale accademico: ricerca, progetti, pubblicazioni e contatti." name="description"/>
+    <meta content="website" property="og:type"/>
+    <meta content="Nome Cognome — Research &amp; Data" property="og:title"/>
+    <meta content="Research, publications and projects." property="og:description"/>
+    <title>Nome Cognome · Research &amp; Data</title>
+    <link href="assets/favicon.svg" rel="icon" type="image/svg+xml"/>
+    <link href="style.css" rel="stylesheet"/>
+    <script defer="" src="script.js">
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" data-i18n="skip" href="#main">Vai al contenuto</a>
+    <header class="site-header">
+      <div class="container header-inner">
+        <a aria-label="Homepage" class="brand" href="#home">
+          <span class="brand-mark">NC<span class="brand-dot">.</span>
+        </span>
+        <span class="brand-word">academic<span class="brand-dot">/</span>site</span>
+      </a>
+      <button aria-controls="site-nav" aria-expanded="false" aria-label="Apri menu" class="menu-toggle" type="button">
+        <span>
+        </span>
+        <span>
+        </span>
+        <span>
+        </span>
+      </button>
+      <nav aria-label="Navigazione principale" class="site-nav" id="site-nav">
+        <a data-i18n="navAbout" href="#about">Chi sono</a>
+        <a data-i18n="navResearch" href="#research">Ricerca</a>
+        <a data-i18n="navProjects" href="#projects">Progetti</a>
+        <a data-i18n="navPublications" href="#publications">Pubblicazioni</a>
+        <a data-i18n="navContact" href="#contact">Contatti</a>
       </nav>
       <div class="header-actions">
-        <button class="icon-button" id="theme-toggle" type="button" aria-label="Cambia tema" title="Light / dark"><span id="theme-icon">☾</span></button>
-        <button class="language-toggle" id="language-toggle" type="button" aria-label="Switch language"><span id="language-label">EN</span><span aria-hidden="true"> ↗</span></button>
+        <button aria-label="Cambia tema" class="icon-button" id="theme-toggle" title="Light / dark" type="button">
+          <span id="theme-icon">☾</span>
+        </button>
+        <button aria-label="Switch language" class="language-toggle" id="language-toggle" type="button">
+          <span id="language-label">EN</span>
+          <span aria-hidden="true"> ↗</span>
+        </button>
       </div>
     </div>
   </header>
-
   <main id="main">
-    <section id="home" class="hero container">
+    <section class="hero container" id="home">
       <div class="hero-content reveal">
-        <div class="eyebrow"><span class="status-pulse" aria-hidden="true"></span><span data-i18n="eyebrow">Portfolio accademico · Disponibile per collaborazioni</span></div>
+        <div class="eyebrow">
+          <span aria-hidden="true" class="status-pulse">
+          </span>
+          <span data-i18n="eyebrow">Portfolio accademico · Disponibile per collaborazioni</span>
+        </div>
         <p class="hero-intro" data-i18n="hello">Ciao, sono</p>
-        <h1>Nome <span class="gradient-text">Cognome.</span></h1>
+        <h1>Nome <span class="gradient-text">Cognome.</span>
+        </h1>
         <p class="hero-role" data-i18n="role">Ricerca · Statistica · Data Science</p>
         <p class="hero-description" data-i18n="heroDescription">Studio come trasformare dati complessi in conoscenza affidabile, combinando metodi statistici, machine learning e ricerca interdisciplinare.</p>
         <div class="hero-actions">
-          <a class="button button-primary" href="#research"><span data-i18n="explore">Esplora la ricerca</span><span aria-hidden="true">↗</span></a>
-          <a class="button button-secondary" href="cv/CV.pdf" id="cv-link" target="_blank" rel="noopener"><span data-i18n="downloadCV">Scarica il CV</span><span aria-hidden="true">↓</span></a>
+          <a class="button button-primary" href="#research">
+            <span data-i18n="explore">Esplora la ricerca</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+          <a class="button button-secondary" href="cv/CV.pdf" id="cv-link" rel="noopener" target="_blank">
+            <span data-i18n="downloadCV">Scarica il CV</span>
+            <span aria-hidden="true">↓</span>
+          </a>
         </div>
-        <div class="hero-social" aria-label="Social links">
-          <a href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a href="https://www.linkedin.com/in/USERNAME/" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-          <a href="https://orcid.org/0000-0000-0000-0000" target="_blank" rel="noopener noreferrer">ORCID ↗</a>
+        <div aria-label="Social links" class="hero-social">
+          <a href="https://github.com/USERNAME" rel="noopener noreferrer" target="_blank">GitHub ↗</a>
+          <a href="https://www.linkedin.com/in/USERNAME/" rel="noopener noreferrer" target="_blank">LinkedIn ↗</a>
+          <a href="https://orcid.org/0000-0000-0000-0000" rel="noopener noreferrer" target="_blank">ORCID ↗</a>
         </div>
       </div>
-      <div class="hero-visual reveal" aria-label="Ritratto illustrato segnaposto">
-        <div class="portrait-shell"><div class="portrait-glow"></div><img src="assets/avatar.svg" alt="Illustrazione segnaposto: sostituiscila con la tua fotografia" /></div>
-        <div class="floating-chip chip-top"><span class="chip-symbol">✳</span><span data-i18n="chipOne">Curiosità e metodo</span></div>
-        <div class="floating-chip chip-bottom"><span class="chip-symbol">⌁</span><span data-i18n="chipTwo">Dati → conoscenza</span></div>
+      <div aria-label="Ritratto illustrato segnaposto" class="hero-visual reveal">
+        <div class="portrait-shell">
+          <div class="portrait-glow">
+          </div>
+          <img alt="Illustrazione segnaposto: sostituiscila con la tua fotografia" decoding="async" height="320" src="assets/avatar.svg" width="320"/>
+        </div>
       </div>
-      <a class="scroll-cue" href="#about"><span data-i18n="scroll">Scopri di più</span><span aria-hidden="true">↓</span></a>
+      <a class="scroll-cue" href="#about">
+        <span data-i18n="scroll">Scopri di più</span>
+        <span aria-hidden="true">↓</span>
+      </a>
     </section>
-
-    <section id="about" class="section container reveal">
-      <div class="section-heading"><div><p class="section-index">01 / ABOUT</p><h2 data-i18n="aboutTitle">Un po' di me<span class="accent">.</span></h2></div><p class="section-lead" data-i18n="aboutLead">Un approccio rigoroso, aperto e interdisciplinare.</p></div>
+    <section class="section container reveal" id="about">
+      <div class="section-heading">
+        <div>
+          <p class="section-index">01 / ABOUT</p>
+          <h2 data-i18n="aboutTitle">Un po' di me<span class="accent">.</span>
+          </h2>
+        </div>
+        <p class="section-lead" data-i18n="aboutLead">Un approccio rigoroso, aperto e interdisciplinare.</p>
+      </div>
       <div class="about-grid">
-        <div class="about-copy"><p data-i18n="aboutP1">Sono un ricercatore interessato all'analisi dei dati e allo sviluppo di metodi quantitativi per affrontare problemi reali.</p><p data-i18n="aboutP2">Il mio lavoro si colloca all'intersezione tra statistica, machine learning e applicazioni scientifiche. Mi piace costruire strumenti riproducibili, collaborare e comunicare risultati in modo chiaro.</p><a class="text-link" href="#contact"><span data-i18n="getInTouch">Parliamone</span> <span aria-hidden="true">↗</span></a></div>
-        <div class="facts-card"><div class="fact"><span data-i18n="factLocation">Sede</span><strong>Bologna, Italia</strong></div><div class="fact"><span data-i18n="factArea">Ambiti</span><strong data-i18n="factAreaValue">Statistica · AI · Ricerca</strong></div><div class="fact"><span data-i18n="factAffiliation">Affiliazione</span><strong data-i18n="factAffiliationValue">Università / Centro di ricerca</strong></div><div class="fact"><span data-i18n="factEmail">Email</span><a href="mailto:nome.cognome@example.com">nome.cognome@example.com ↗</a></div></div>
+        <div class="about-copy">
+          <p data-i18n="aboutP1">Sono un ricercatore interessato all'analisi dei dati e allo sviluppo di metodi quantitativi per affrontare problemi reali.</p>
+          <p data-i18n="aboutP2">Il mio lavoro si colloca all'intersezione tra statistica, machine learning e applicazioni scientifiche. Mi piace costruire strumenti riproducibili, collaborare e comunicare risultati in modo chiaro.</p>
+          <a class="text-link" href="#contact">
+            <span data-i18n="getInTouch">Parliamone</span>
+            <span aria-hidden="true">↗</span>
+          </a>
+        </div>
+        <div class="facts-card">
+          <div class="fact">
+            <span data-i18n="factLocation">Sede</span>
+            <strong>Bologna, Italia</strong>
+          </div>
+          <div class="fact">
+            <span data-i18n="factArea">Ambiti</span>
+            <strong data-i18n="factAreaValue">Statistica · AI · Ricerca</strong>
+          </div>
+          <div class="fact">
+            <span data-i18n="factAffiliation">Affiliazione</span>
+            <strong data-i18n="factAffiliationValue">Università / Centro di ricerca</strong>
+          </div>
+          <div class="fact">
+            <span data-i18n="factEmail">Email</span>
+            <a href="mailto:nome.cognome@example.com">nome.cognome@example.com ↗</a>
+          </div>
+        </div>
       </div>
     </section>
-
-    <section id="research" class="section section-tint"><div class="container reveal"><div class="section-heading"><div><p class="section-index">02 / RESEARCH</p><h2 data-i18n="researchTitle">Interessi di ricerca<span class="accent">.</span></h2></div><p class="section-lead" data-i18n="researchLead">Domande concrete, strumenti quantitativi e risultati riproducibili.</p></div><div class="research-grid">
-      <article class="research-card"><span class="card-icon">◈</span><span class="card-number">01</span><h3 data-i18n="research1Title">Statistica & inferenza</h3><p data-i18n="research1Description">Modelli statistici, disegno degli studi e analisi rigorose dell'incertezza.</p><div class="tag-row"><span>Statistics</span><span>Inference</span></div></article>
-      <article class="research-card"><span class="card-icon">⌘</span><span class="card-number">02</span><h3 data-i18n="research2Title">Machine learning</h3><p data-i18n="research2Description">Metodi predittivi, interpretabilità e valutazione robusta dei modelli.</p><div class="tag-row"><span>ML</span><span>Explainability</span></div></article>
-      <article class="research-card"><span class="card-icon">✳</span><span class="card-number">03</span><h3 data-i18n="research3Title">Applicazioni scientifiche</h3><p data-i18n="research3Description">Integrazione dei dati e metodologie riproducibili per la ricerca.</p><div class="tag-row"><span>Data Science</span><span>Open Science</span></div></article>
-    </div></div></section>
-
-    <section id="projects" class="section container reveal"><div class="section-heading"><div><p class="section-index">03 / SELECTED WORK</p><h2 data-i18n="projectsTitle">Progetti selezionati<span class="accent">.</span></h2></div><p class="section-lead" data-i18n="projectsLead">Una selezione di idee, strumenti e collaborazioni.</p></div><div class="project-grid">
-      <article class="project-card"><div class="project-art art-a"><span>01 / DATA</span><span class="art-glyph" aria-hidden="true">◉</span></div><div class="project-body"><p class="project-type" data-i18n="projectType1">Software · Open source</p><h3 data-i18n="project1Title">Progetto di analisi dati</h3><p data-i18n="project1Description">Una pipeline riproducibile per elaborare, analizzare e visualizzare dati complessi.</p><a href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer" class="text-link"><span data-i18n="viewProject">Vedi il progetto</span> ↗</a></div></article>
-      <article class="project-card"><div class="project-art art-b"><span>02 / METHODS</span><span class="art-glyph" aria-hidden="true">✺</span></div><div class="project-body"><p class="project-type" data-i18n="projectType2">Ricerca · Metodologia</p><h3 data-i18n="project2Title">Metodi statistici applicati</h3><p data-i18n="project2Description">Sviluppo e confronto di approcci quantitativi su problemi di ricerca.</p><a href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer" class="text-link"><span data-i18n="viewProject">Vedi il progetto</span> ↗</a></div></article>
-      <article class="project-card"><div class="project-art art-c"><span>03 / TOOLS</span><span class="art-glyph" aria-hidden="true">⌁</span></div><div class="project-body"><p class="project-type" data-i18n="projectType3">Applicazioni · Visualizzazione</p><h3 data-i18n="project3Title">Dashboard interattiva</h3><p data-i18n="project3Description">Un'interfaccia intuitiva per esplorare i risultati e supportare le decisioni.</p><a href="https://github.com/USERNAME" target="_blank" rel="noopener noreferrer" class="text-link"><span data-i18n="viewProject">Vedi il progetto</span> ↗</a></div></article>
-    </div></section>
-
-    <section id="publications" class="section section-tint"><div class="container reveal"><div class="section-heading"><div><p class="section-index">04 / PUBLICATIONS</p><h2 data-i18n="publicationsTitle">Pubblicazioni<span class="accent">.</span></h2></div><p class="section-lead" data-i18n="publicationsLead">Articoli e lavori: sostituisci gli esempi con le tue citazioni reali.</p></div><div class="publication-list">
-      <article class="publication-item"><div class="pub-meta"><span>2026</span><span class="pub-kind" data-i18n="pubLabel1">Articolo · esempio</span></div><div class="pub-main"><h3 data-i18n="pub1Title">Titolo della tua pubblicazione scientifica</h3><p data-i18n="pub1Authors">Nome Cognome, Coautore A, Coautore B · Rivista / Conferenza</p></div><a href="https://doi.org/" target="_blank" rel="noopener noreferrer" aria-label="Apri DOI della pubblicazione" class="pub-link">↗</a></article>
-      <article class="publication-item"><div class="pub-meta"><span>2025</span><span class="pub-kind" data-i18n="pubLabel2">Preprint · esempio</span></div><div class="pub-main"><h3 data-i18n="pub2Title">Un secondo lavoro o preprint</h3><p data-i18n="pub2Authors">Nome Cognome, Coautore C · Repository / Rivista</p></div><a href="https://doi.org/" target="_blank" rel="noopener noreferrer" aria-label="Apri DOI della pubblicazione" class="pub-link">↗</a></article>
-    </div><p class="publications-note" data-i18n="pubNote">Queste pubblicazioni sono segnaposto: sostituiscile prima di pubblicare il sito.</p></div></section>
-
-    <section id="contact" class="section contact-section container reveal"><p class="section-index">05 / CONTACT</p><div class="contact-panel"><div><span class="contact-orbit" aria-hidden="true">✳</span><h2 data-i18n="contactTitle">Costruiamo qualcosa <em>insieme.</em></h2><p data-i18n="contactDescription">Hai un'idea di ricerca, una proposta di collaborazione o semplicemente una domanda? Scrivimi.</p><a class="button button-light" href="mailto:nome.cognome@example.com"><span data-i18n="writeEmail">Scrivimi un'email</span> <span aria-hidden="true">↗</span></a></div><div class="contact-decoration" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="orbit orbit-three"></div><span>✳</span></div></div></section>
-  </main>
-
-  <footer class="footer"><div class="container footer-inner"><a href="#home" class="footer-brand">NC<span class="accent">.</span></a><p><span id="year">2026</span> · <span data-i18n="footer">Creato con cura, pubblicato con GitHub Pages.</span></p><a href="#home" class="back-top"><span data-i18n="backTop">Torna su</span> ↑</a></div></footer>
-</body>
-</html>
+    <section class="section section-tint" id="research">
+      <div class="container reveal">
+        <div class="section-heading">
+          <div>
+            <p class="section-index">02 / RESEARCH</p>
+            <h2 data-i18n="researchTitle">Interessi di ricerca<span class="accent">.</span>
+            </h2>
+          </div>
+          <p class="section-lead" data-i18n="researchLead">Domande concrete, strumenti quantitativi e risultati riproducibili.</p>
+        </div>
+        <div aria-label="Mappa interattiva degli interessi di ricerca" class="research-network" id="research-network">
+          <div class="network-toolbar">
+            <p class="network-hint" data-i18n="networkHint">Esplora le connessioni: trascina i punti o seleziona un interesse.</p>
+            <button class="network-reset" data-i18n="networkReset" id="network-reset" type="button">Ripristina disposizione</button>
+          </div>
+          <div class="network-stage">
+            <svg aria-label="Mappa interattiva degli interessi di ricerca" id="research-graph" role="group">
+            </svg>
+          </div>
+          <div aria-live="polite" class="network-detail" id="network-detail">
+            <span class="network-detail-index" id="network-detail-index">01 / RESEARCH</span>
+            <div>
+              <h3 data-i18n="research1Title" id="network-detail-title">Statistica &amp; inferenza</h3>
+              <p data-i18n="research1Description" id="network-detail-description">Modelli statistici, disegno degli studi e analisi rigorose dell'incertezza.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="section container reveal" id="projects">
+      <div class="section-heading">
+        <div>
+          <p class="section-index">03 / SELECTED WORK</p>
+          <h2 data-i18n="projectsTitle">Progetti selezionati<span class="accent">.</span>
+          </h2>
+        </div>
+        <p class="section-lead" data-i18n="projectsLead">Una selezione di idee, strumenti e collaborazioni.</p>
+      </div>
+      <div class="project-grid">
+        <article class="project-card">
+          <div class="project-art art-a">
+            <span>01 / DATA</span>
+          </div>
+          <div class="project-body">
+            <p class="project-type" data-i18n="projectType1">Software · Open source</p>
+            <h3 data-i18n="project1Title">Progetto di analisi dati</h3>
+            <p data-i18n="project1Description">Una pipeline riproducibile per elaborare, analizzare e visualizzare dati complessi.</p>
+            <a class="text-link" href="https://github.com/USERNAME" rel="noopener noreferrer" target="_blank">
+              <span data-i18n="viewProject">Vedi il progetto</span> ↗</a>
+              </div>
+            </article>
+            <article class="project-card">
+              <div class="project-art art-b">
+                <span>02 / METHODS</span>
+              </div>
+              <div class="project-body">
+                <p class="project-type" data-i18n="projectType2">Ricerca · Metodologia</p>
+                <h3 data-i18n="project2Title">Metodi statistici applicati</h3>
+                <p data-i18n="project2Description">Sviluppo e confronto di approcci quantitativi su problemi di ricerca.</p>
+                <a class="text-link" href="https://github.com/USERNAME" rel="noopener noreferrer" target="_blank">
+                  <span data-i18n="viewProject">Vedi il progetto</span> ↗</a>
+                  </div>
+                </article>
+                <article class="project-card">
+                  <div class="project-art art-c">
+                    <span>03 / TOOLS</span>
+                  </div>
+                  <div class="project-body">
+                    <p class="project-type" data-i18n="projectType3">Applicazioni · Visualizzazione</p>
+                    <h3 data-i18n="project3Title">Dashboard interattiva</h3>
+                    <p data-i18n="project3Description">Un'interfaccia intuitiva per esplorare i risultati e supportare le decisioni.</p>
+                    <a class="text-link" href="https://github.com/USERNAME" rel="noopener noreferrer" target="_blank">
+                      <span data-i18n="viewProject">Vedi il progetto</span> ↗</a>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+                <section class="section section-tint" id="publications">
+                  <div class="container reveal">
+                    <div class="section-heading">
+                      <div>
+                        <p class="section-index">04 / PUBLICATIONS</p>
+                        <h2 data-i18n="publicationsTitle">Pubblicazioni<span class="accent">.</span>
+                        </h2>
+                      </div>
+                      <p class="section-lead" data-i18n="publicationsLead">Articoli e lavori: sostituisci gli esempi con le tue citazioni reali.</p>
+                    </div>
+                    <div class="publication-list">
+                      <article class="publication-item">
+                        <div class="pub-meta">
+                          <span>2026</span>
+                          <span class="pub-kind" data-i18n="pubLabel1">Articolo · esempio</span>
+                        </div>
+                        <div class="pub-main">
+                          <h3 data-i18n="pub1Title">Titolo della tua pubblicazione scientifica</h3>
+                          <p data-i18n="pub1Authors">Nome Cognome, Coautore A, Coautore B · Rivista / Conferenza</p>
+                        </div>
+                        <a aria-label="Apri DOI della pubblicazione" class="pub-link" href="https://doi.org/" rel="noopener noreferrer" target="_blank">↗</a>
+                      </article>
+                      <article class="publication-item">
+                        <div class="pub-meta">
+                          <span>2025</span>
+                          <span class="pub-kind" data-i18n="pubLabel2">Preprint · esempio</span>
+                        </div>
+                        <div class="pub-main">
+                          <h3 data-i18n="pub2Title">Un secondo lavoro o preprint</h3>
+                          <p data-i18n="pub2Authors">Nome Cognome, Coautore C · Repository / Rivista</p>
+                        </div>
+                        <a aria-label="Apri DOI della pubblicazione" class="pub-link" href="https://doi.org/" rel="noopener noreferrer" target="_blank">↗</a>
+                      </article>
+                    </div>
+                    <p class="publications-note" data-i18n="pubNote">Queste pubblicazioni sono segnaposto: sostituiscile prima di pubblicare il sito.</p>
+                  </div>
+                </section>
+                <section class="section contact-section container reveal" id="contact">
+                  <p class="section-index">05 / CONTACT</p>
+                  <div class="contact-panel">
+                    <div>
+                      <h2 data-i18n="contactTitle">Costruiamo qualcosa <em>insieme.</em>
+                      </h2>
+                      <p data-i18n="contactDescription">Hai un'idea di ricerca, una proposta di collaborazione o semplicemente una domanda? Scrivimi.</p>
+                      <a class="button button-light" href="mailto:nome.cognome@example.com">
+                        <span data-i18n="writeEmail">Scrivimi un'email</span>
+                        <span aria-hidden="true">↗</span>
+                      </a>
+                    </div>
+                  </div>
+                </section>
+              </main>
+              <footer class="footer">
+                <div class="container footer-inner">
+                  <a class="footer-brand" href="#home">NC<span class="accent">.</span>
+                  </a>
+                  <p>
+                    <span id="year">2026</span> · <span data-i18n="footer">Creato con cura, pubblicato con GitHub Pages.</span>
+                  </p>
+                  <a class="back-top" href="#home">
+                    <span data-i18n="backTop">Torna su</span> ↑</a>
+                    </div>
+                  </footer>
+                </body>
+              </html>

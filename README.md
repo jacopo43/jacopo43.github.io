@@ -21,7 +21,7 @@ Tutti i contenuti sono **esempi**: modifica ciò che serve prima della pubblicaz
 - [ ] **Favicon:** cambia `assets/favicon.svg` se vuoi un logo personale.
 - [ ] **CV:** aggiungi il tuo PDF come `cv/CV.pdf` e rimuovi le due righe finali in `script.js` che intercettano il clic sul CV (vedi sotto).
 - [ ] **Metadati:** aggiorna `<title>`, la descrizione e i meta tag Open Graph in `index.html` e i valori della funzione `setLanguage` in `script.js`.
-- [ ] **Colori:** modifica le variabili CSS `--primary`, `--primary-deep`, `--accent` in `style.css` per entrambi i temi.
+- [ ] **Colori:** modifica le variabili CSS nella sezione `Editorial visual refinement` di `style.css`, per entrambi i temi.
 - [ ] **Luogo di lavoro / affiliazione / progetti:** verifica la correttezza dei dati e rimuovi tutto ciò che non vuoi rendere pubblico.
 
 ### CV: passaggio importante
@@ -66,3 +66,15 @@ Modifica localmente i file e carica le versioni aggiornate sullo stesso reposito
 Questo progetto è un modello da completare. Non pubblicare i contenuti segnaposto, link non verificati o dati personali non destinati al pubblico. GitHub Pages è hosting statico: il pulsante per inviare email apre il programma di posta dell'utente e non include un form con backend.
 
 **Licenza:** puoi utilizzare e modificare liberamente questo modello per il tuo sito personale.
+
+
+## Aspetto editoriale e grafo Research / Editorial style and Research graph
+
+- Colori più sobri, foto ridotta e meno elementi decorativi; tutti i contenuti originali sono mantenuti.
+- La sezione **Research Interests** ora presenta una rete interattiva di punti collegati. Trascina i nodi, selezionali con mouse o tastiera, oppure usa il pulsante di ripristino.
+- Per cambiare le connessioni modifica `graphNodes` e `graphEdges` in `script.js`. I tre temi principali usano le traduzioni `research1Title`, `research2Title`, `research3Title` e le rispettive descrizioni.
+- Per modificare palette e dimensioni, cerca `Editorial visual refinement` in `style.css`.
+- La grafica non richiede librerie esterne. Con `prefers-reduced-motion` attivo, la rete rimane statica e utilizzabile.
+- Le regole CSS sono disposte con una proprietà per riga e commenti per gruppi logici. HTML e JavaScript includono commenti descrittivi per le principali sezioni e operazioni.
+
+The graph is a lightweight interactive SVG network with draggable nodes, keyboard selection and bilingual descriptions. Customize its nodes and edges in `script.js`.
