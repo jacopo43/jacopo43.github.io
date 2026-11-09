@@ -13,8 +13,8 @@
   const nodes = []; // Store all background graph vertices.
   const densityArea = 12000; // Set the approximate area occupied by each node in square pixels.
   const maximumNodes = 115; // Prevent expensive rendering on very large monitors.
-  const normalLinkDistance = 155; // Connect nearby vertices with faint lines.
-  const cursorLinkDistance = 185; // Draw additional links around the passing cursor.
+  const normalLinkDistance = 125; // Connect nearby vertices with faint lines.
+  const cursorLinkDistance = 140; // Draw additional links around the passing cursor.
   const cursorInfluence = 135; // Define how far the mouse can displace nearby vertices.
   const maximumPixelRatio = 1.7; // Limit high-density rendering for battery efficiency.
   const targetFrameInterval = 1000 / 30; // Aim for smooth but moderate 30 FPS animation.
@@ -49,7 +49,7 @@
       const row = Math.floor(index / columns); // Determine the node's nominal vertical slot.
       const x = ((column + 0.25 + random() * 0.5) / columns) * width; // Jitter the horizontal coordinate to avoid a rigid grid.
       const y = ((row + 0.25 + random() * 0.5) / rows) * height; // Jitter the vertical coordinate to avoid a rigid grid.
-      nodes.push({ baseX: x, baseY: y, x, y, vx: 0, vy: 0, phase: random() * Math.PI * 2, radius: 1 + random() * 0.65 }); // Store the position, velocity, motion phase, and dot radius.
+      nodes.push({ baseX: x, baseY: y, x, y, vx: 0, vy: 0, phase: random() * Math.PI * 2, radius: 2.5 + random() * 1.5 }); // Store the position, velocity, motion phase, and dot radius.
     } // Finish creating vertices.
   }; // End the node generator.
 
@@ -76,7 +76,7 @@
         const distanceSquared = dx * dx + dy * dy; // Calculate squared Euclidean distance.
         if (distanceSquared > linkDistanceSquared) continue; // Skip distant graph vertices.
         const strength = 1 - Math.sqrt(distanceSquared) / normalLinkDistance; // Fade links smoothly with distance.
-        drawLine(first.x, first.y, second.x, second.y, colors.link, 0.07 + strength * 0.18, 0.65); // Display a faint underlying network edge.
+        drawLine(first.x, first.y, second.x, second.y, colors.link, 0.07 + strength * 0.3, 2); // Display a faint underlying network edge.
       } // Finish the target-node loop.
     } // Finish drawing standard network edges.
     for (const node of nodes) { // Draw the currently visible node centers.
@@ -85,10 +85,10 @@
       const distanceSquared = dx * dx + dy * dy; // Calculate squared cursor-to-node distance.
       const nearCursor = cursor.active && distanceSquared < cursorDistanceSquared; // Identify nodes inside the hover region.
       const hoverStrength = nearCursor ? 1 - Math.sqrt(distanceSquared) / cursorLinkDistance : 0; // Fade hover effects at the interaction boundary.
-      if (nearCursor) drawLine(cursor.x, cursor.y, node.x, node.y, colors.hover, hoverStrength * 0.38, 0.85); // Connect the mouse to nearby nodes without clicking.
+      if (nearCursor) drawLine(cursor.x, cursor.y, node.x, node.y, colors.hover, hoverStrength * 0.85, 1.5); // Connect the mouse to nearby nodes without clicking.
       context.fillStyle = `rgba(${nearCursor ? colors.hover : colors.dot}, ${0.35 + hoverStrength * 0.52})`; // Brighten only nearby vertices.
       context.beginPath(); // Start the circular node path.
-      context.arc(node.x, node.y, node.radius + hoverStrength * 1.0, 0, Math.PI * 2); // Draw a modestly enlarged hovered vertex.
+      context.arc(node.x, node.y, node.radius + hoverStrength * 3.0, 0, Math.PI * 2); // Draw a modestly enlarged hovered vertex.
       context.fill(); // Paint the vertex.
     } // Finish rendering vertices and hover links.
   }; // End the canvas drawing function.
