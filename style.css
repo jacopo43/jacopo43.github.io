@@ -1253,7 +1253,7 @@ h1 {
 
 /* Research graph: restrained Obsidian-inspired force network with selectable nodes. */
 .research-network {
-  border: 1px solid var(--line);
+  border: 1px solid transparent;
   border-radius: 7px;
   background: transparent;
   overflow: hidden;
@@ -1265,7 +1265,7 @@ h1 {
   justify-content: space-between;
   gap: 18px;
   padding: 16px 20px;
-  border-bottom: 1px solid var(--line);
+  border-bottom: 1px solid transparent;
 }
 
 .network-hint {
@@ -1304,8 +1304,9 @@ h1 {
 }
 
 .graph-link {
-  stroke: var(--line);
-  stroke-width: 1.4;
+  stroke: var(--primary);
+  stroke-opacity: .36;
+  stroke-width: 1.5;
   pointer-events: none;
 }
 
@@ -1337,6 +1338,11 @@ h1 {
   stroke-width: 1.25;
 }
 
+.graph-node:hover circle {
+  fill: var(--surface-tint); /* Distinguish an anchored research topic when the mouse passes over it. */
+  stroke-width: 2.6; /* Add hover emphasis without applying background-node repulsion. */
+}
+
 .graph-node.active circle, .graph-node:focus-visible circle {
   fill: var(--primary);
   stroke-width: 2.4;
@@ -1365,7 +1371,7 @@ h1 {
   display: grid;
   grid-template-columns: 150px 1fr;
   gap: 24px;
-  border-top: 1px solid var(--line);
+  border-top: 1px solid transparent;
   padding: 21px 25px;
   min-height: 115px;
 }

@@ -6,7 +6,7 @@
   height: 100%; /* Match the viewport height. */
   z-index: 0; /* Place the artwork below the page content. */
   pointer-events: none; /* Keep every link and button clickable. */
-  opacity: 0.5; /* Make the background subtle enough for reading. */
+  opacity: 0.3; /* Make the background subtle enough for reading. */
 }
 
 /* Preserve the existing site's stacking and interaction. */

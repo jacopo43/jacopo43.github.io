@@ -313,6 +313,11 @@ function createResearchGraph() {
     group.appendChild(label);
     graphSvg.appendChild(group);
     graphShapes.set(node.id, { group, label });
+    group.addEventListener('pointerenter', () => { // Highlight a research topic on hover without moving it.
+      const linkedMain = graphEdges.find(([from, to]) => (from === node.id && graphById.get(to).key) || (to === node.id && graphById.get(from).key)); // Find a main theme associated with a secondary topic.
+      const selectedId = node.key ? node.id : linkedMain ? (graphById.get(linkedMain[0]).key ? linkedMain[0] : linkedMain[1]) : graphSelected; // Choose the relevant main theme.
+      selectGraphNode(selectedId); // Update highlighted connections and the bilingual detail panel.
+    }); // Finish the hover listener.
     group.addEventListener('pointerdown', event => startGraphDrag(event, node));
     group.addEventListener('pointermove', event => moveGraphDrag(event, node));
     group.addEventListener('pointerup', event => stopGraphDrag(event, node));
@@ -447,4 +452,4 @@ createResearchGraph();
 graphReset.addEventListener('click', resetResearchGraph);
 new ResizeObserver(resizeResearchGraph).observe(graphSvg);
 new IntersectionObserver(entries => { graphActive = entries[0].isIntersecting; }).observe(graphSvg);
-graphFrame = window.requestAnimationFrame(animateResearchGraph);
+// Keep research-topic nodes anchored; dragging and reset still work, while the background network continues moving.

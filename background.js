@@ -11,11 +11,15 @@
   const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)"); // Check the visitor's motion accessibility preference.
   const cursor = { x: -1000, y: -1000, active: false }; // Track the pointer without requiring a click.
   const nodes = []; // Store all background graph vertices.
+  const networkEdges = []; // Preserve random background connections between frames.
+  const researchSelector = "#research-graph .graph-node"; // Read the original topic circles without altering the HTML.
+  const researchBridgeDistance = 275; // Link nearby background vertices to visible research topics.
+  const maximumResearchBridges = 3; // Limit visual clutter around each anchored topic.
   const densityArea = 12000; // Set the approximate area occupied by each node in square pixels.
-  const maximumNodes = 115; // Prevent expensive rendering on very large monitors.
+  const maximumNodes = 300; // Prevent expensive rendering on very large monitors.
   const normalLinkDistance = 125; // Connect nearby vertices with faint lines.
-  const cursorLinkDistance = 140; // Draw additional links around the passing cursor.
-  const cursorInfluence = 135; // Define how far the mouse can displace nearby vertices.
+  const cursorLinkDistance = 160; // Draw additional links around the passing cursor.
+  const cursorInfluence = 455; // Define how far the mouse can displace nearby vertices.
   const maximumPixelRatio = 1.7; // Limit high-density rendering for battery efficiency.
   const targetFrameInterval = 1000 / 30; // Aim for smooth but moderate 30 FPS animation.
   let width = 0; // Store the current viewport width.
@@ -34,12 +38,13 @@
     return { // Supply low-contrast academic colors rather than bright neon effects.
       link: dark ? "115, 155, 145" : "67, 104, 96", // Set the RGB color of the network edges.
       dot: dark ? "167, 198, 188" : "67, 104, 96", // Set the RGB color of the node centers.
-      hover: dark ? "190, 218, 207" : "42, 93, 82" // Set the RGB color of mouse-activated links.
+      hover: dark ? "100, 255, 190" : "0, 115, 85" // More saturated green on hover.
     }; // Finish the palette object.
   }; // End the theme palette helper.
 
   const createNodes = () => { // Create a loosely distributed constellation of moving points.
     nodes.length = 0; // Remove node coordinates from the previous viewport size.
+    networkEdges.length = 0; // Rebuild connection topology when the viewport changes.
     seed = 1741; // Restore deterministic generation after resizing.
     const count = Math.min(maximumNodes, Math.max(32, Math.round(width * height / densityArea))); // Match node count to viewport area.
     const columns = Math.max(4, Math.round(Math.sqrt(count * width / Math.max(height, 1)))); // Choose a balanced number of invisible layout columns.
@@ -47,10 +52,30 @@
     for (let index = 0; index < count; index += 1) { // Populate each position in the graph.
       const column = index % columns; // Determine the node's nominal horizontal slot.
       const row = Math.floor(index / columns); // Determine the node's nominal vertical slot.
-      const x = ((column + 0.25 + random() * 0.5) / columns) * width; // Jitter the horizontal coordinate to avoid a rigid grid.
-      const y = ((row + 0.25 + random() * 0.5) / rows) * height; // Jitter the vertical coordinate to avoid a rigid grid.
+      const x = random() * width; // Completely random horizontal position.
+      const y = random() * height; // Completely random vertical position.
       nodes.push({ baseX: x, baseY: y, x, y, vx: 0, vy: 0, phase: random() * Math.PI * 2, radius: 2.5 + random() * 1.5 }); // Store the position, velocity, motion phase, and dot radius.
     } // Finish creating vertices.
+    const connected = new Set(); // Avoid duplicate links between pairs of background nodes.
+    for (let index = 0; index < nodes.length; index += 1) { // Give each node a varied number of neighbors.
+      const origin = nodes[index]; // Choose the current vertex.
+      const candidates = nodes.map((node, otherIndex) => ({ // Consider potential neighbors using their resting coordinates.
+        index: otherIndex, // Preserve the candidate index.
+        distance: Math.hypot(origin.baseX - node.baseX, origin.baseY - node.baseY) // Measure neighbor proximity.
+      })).filter(candidate => candidate.index !== index).sort((a, b) => a.distance - b.distance); // Prefer local connections.
+      const wanted = random() < 0.35 ? 0 : 1 + Math.floor(random() * 3); // Leave 35% of nodes without outgoing connections; connect the others to 1–3 nearby nodes.
+      const pool = candidates.filter(candidate => candidate.distance < 130).slice(0, 5); // Restrict connections to close neighbors, encouraging local groups.
+      for (let attempt = 0; attempt < wanted && pool.length; attempt += 1) { // Choose different nearby partners.
+        const chosen = Math.floor(random() * pool.length); // Add randomness to the connection pattern.
+        const target = pool.splice(chosen, 1)[0]; // Do not choose the same neighbor twice for this origin.
+        const low = Math.min(index, target.index); // Normalize the first endpoint.
+        const high = Math.max(index, target.index); // Normalize the second endpoint.
+        const key = `${low}:${high}`; // Identify an undirected edge uniquely.
+        if (connected.has(key)) continue; // Skip an edge already added by its other endpoint.
+        connected.add(key); // Record the new edge.
+        networkEdges.push({ first: low, second: high, weight: 0.68 + random() * 0.32 }); // Keep randomized edge opacity stable across frames.
+      } // Finish assigning partners to this vertex.
+    } // Finish building the varied-degree network.
   }; // End the node generator.
 
   const drawLine = (x1, y1, x2, y2, color, opacity, thickness) => { // Draw a single translucent network connection.
@@ -65,20 +90,33 @@
   const draw = () => { // Render links, cursor interactions, and vertices for one frame.
     context.clearRect(0, 0, width, height); // Preserve transparency behind the website content.
     const colors = palette(); // Match the graph to the current theme.
-    const linkDistanceSquared = normalLinkDistance * normalLinkDistance; // Compare distances without repeated square roots.
     const cursorDistanceSquared = cursorLinkDistance * cursorLinkDistance; // Calculate the mouse connection range squared.
-    for (let i = 0; i < nodes.length; i += 1) { // Visit each source vertex once.
-      const first = nodes[i]; // Read the source node position.
-      for (let j = i + 1; j < nodes.length; j += 1) { // Visit only subsequent nodes to avoid duplicate edges.
-        const second = nodes[j]; // Read the target node position.
-        const dx = first.x - second.x; // Calculate the horizontal separation.
-        const dy = first.y - second.y; // Calculate the vertical separation.
-        const distanceSquared = dx * dx + dy * dy; // Calculate squared Euclidean distance.
-        if (distanceSquared > linkDistanceSquared) continue; // Skip distant graph vertices.
-        const strength = 1 - Math.sqrt(distanceSquared) / normalLinkDistance; // Fade links smoothly with distance.
-        drawLine(first.x, first.y, second.x, second.y, colors.link, 0.07 + strength * 0.3, 2); // Display a faint underlying network edge.
-      } // Finish the target-node loop.
-    } // Finish drawing standard network edges.
+    for (const edge of networkEdges) { // Draw the same randomized topology while vertices move.
+      const first = nodes[edge.first]; // Read the current first endpoint.
+      const second = nodes[edge.second]; // Read the current second endpoint.
+      const distance = Math.hypot(first.x - second.x, first.y - second.y); // Measure the current edge length.
+      const alpha = (0.11 + Math.max(0, 1 - distance / 290) * 0.25) * edge.weight; // Fade long links without removing the connection.
+      drawLine(first.x, first.y, second.x, second.y, colors.link, alpha, 2); // Draw a background edge with the original thickness.
+    } // Finish drawing randomized edges.
+    const researchBounds = document.getElementById("research-graph")?.getBoundingClientRect(); // Find the current visible research graph.
+    if (researchBounds && researchBounds.bottom > 0 && researchBounds.top < height) { // Add bridges only while Research Interests is visible.
+      const topicGroups = document.querySelectorAll(researchSelector); // Find existing thematic nodes without duplicating them.
+      for (const group of topicGroups) { // Join each anchored research topic to its nearby moving background.
+        const circle = group.querySelector("circle"); // Find the original node circle inside the SVG group.
+        if (!circle) continue; // Skip incomplete graph nodes.
+        const box = circle.getBoundingClientRect(); // Find the circle's screen position even after dragging.
+        const anchorX = box.left + box.width / 2; // Convert to canvas viewport coordinates.
+        const anchorY = box.top + box.height / 2; // Convert to canvas viewport coordinates.
+        const neighbors = nodes.map((node, index) => ({ node, index, distance: Math.hypot(node.x - anchorX, node.y - anchorY) })) // Calculate nearby moving background points.
+          .filter(candidate => candidate.distance < researchBridgeDistance) // Avoid crossing the entire page with bridge lines.
+          .sort((a, b) => a.distance - b.distance) // Prefer the closest surrounding vertices.
+          .slice(0, maximumResearchBridges); // Limit each topic to a few fine connectors.
+        for (const neighbor of neighbors) { // Draw bridges behind the research overlay.
+          const alpha = 0.1 + (1 - neighbor.distance / researchBridgeDistance) * 0.22; // Fade each bridge with distance.
+          drawLine(anchorX, anchorY, neighbor.node.x, neighbor.node.y, colors.link, alpha, 1.5); // Visually merge the two networks.
+        } // Finish drawing links to this research topic.
+      } // Finish connecting all visible topics.
+    } // Finish the optional Research Interests integration.
     for (const node of nodes) { // Draw the currently visible node centers.
       const dx = node.x - cursor.x; // Measure the node's horizontal distance to the mouse.
       const dy = node.y - cursor.y; // Measure the node's vertical distance to the mouse.
@@ -86,7 +124,7 @@
       const nearCursor = cursor.active && distanceSquared < cursorDistanceSquared; // Identify nodes inside the hover region.
       const hoverStrength = nearCursor ? 1 - Math.sqrt(distanceSquared) / cursorLinkDistance : 0; // Fade hover effects at the interaction boundary.
       if (nearCursor) drawLine(cursor.x, cursor.y, node.x, node.y, colors.hover, hoverStrength * 0.85, 1.5); // Connect the mouse to nearby nodes without clicking.
-      context.fillStyle = `rgba(${nearCursor ? colors.hover : colors.dot}, ${0.35 + hoverStrength * 0.52})`; // Brighten only nearby vertices.
+      context.fillStyle = `rgba(${nearCursor ? colors.hover : colors.dot}, ${0.35 + hoverStrength * 0.65})`; // Increase opacity up to 1 near cursor.
       context.beginPath(); // Start the circular node path.
       context.arc(node.x, node.y, node.radius + hoverStrength * 3.0, 0, Math.PI * 2); // Draw a modestly enlarged hovered vertex.
       context.fill(); // Paint the vertex.
