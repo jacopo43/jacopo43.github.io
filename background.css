@@ -1,0 +1,36 @@
+/* Original scientific-map background: a quiet decorative layer behind all site content. */
+.site-background {
+  position: fixed; /* Keep the artwork stationary while the page scrolls. */
+  inset: 0; /* Cover the whole browser window. */
+  width: 100%; /* Match the viewport width. */
+  height: 100%; /* Match the viewport height. */
+  z-index: 0; /* Place the artwork below the page content. */
+  pointer-events: none; /* Keep every link and button clickable. */
+  opacity: 0.68; /* Make the background subtle enough for reading. */
+}
+
+/* Preserve the existing site's stacking and interaction. */
+body > .site-header,
+body > main,
+body > .footer {
+  position: relative; /* Create a foreground layer without changing the content. */
+  z-index: 1; /* Display the content above the background canvas. */
+}
+
+/* Retain the sticky behavior already defined for the site navigation. */
+body > .site-header {
+  position: sticky; /* Keep the existing sticky header. */
+  z-index: 50; /* Keep the navigation above all other site sections. */
+}
+
+/* Dark mode uses a softer background to protect text contrast. */
+:root[data-theme="dark"] .site-background {
+  opacity: 0.42; /* Reduce visual noise behind dark-mode content. */
+}
+
+/* Respect visitors who prefer little or no animation. */
+@media (prefers-reduced-motion: reduce) {
+  .site-background {
+    opacity: 0.5; /* Show the stationary illustration more quietly. */
+  }
+}
