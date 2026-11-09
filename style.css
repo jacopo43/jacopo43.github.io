@@ -418,7 +418,7 @@ h1 {
 }
 
 .section-tint {
-  background:var(--surface-tint);
+  background:transparent;
 }
 
 .section-heading {
@@ -1255,7 +1255,7 @@ h1 {
 .research-network {
   border: 1px solid var(--line);
   border-radius: 7px;
-  background: var(--surface);
+  background: transparent;
   overflow: hidden;
 }
 
