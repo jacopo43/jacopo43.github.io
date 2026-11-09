@@ -1,97 +1,172 @@
-/* A self-contained moving contour background inspired by scientific illustrations. */
+/* Interactive scientific network for the existing site-background canvas. */
+/* Replace only the previous background.js; leave index.html and background.css unchanged. */
 (() => {
-  "use strict"; // Keep this file isolated from the site's existing JavaScript.
+  "use strict"; // Keep background variables separate from the existing site.
 
-  const canvas = document.getElementById("site-background"); // Find the decorative canvas added to index.html.
-  if (!canvas) return; // Do nothing if the optional canvas has not been installed.
+  const canvas = document.getElementById("site-background"); // Select the canvas already installed in the previous update.
+  if (!canvas) return; // Exit quietly when the optional background is absent.
+  const context = canvas.getContext("2d", { alpha: true }); // Request a transparent drawing context.
+  if (!context) return; // Avoid errors when canvas drawing is unavailable.
 
-  const context = canvas.getContext("2d", { alpha: true }); // Create a transparent 2D drawing surface.
-  if (!context) return; // Stop gracefully if the browser cannot draw on the canvas.
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)"); // Check the visitor's motion accessibility preference.
+  const cursor = { x: -1000, y: -1000, active: false }; // Track the pointer without requiring a click.
+  const nodes = []; // Store all background graph vertices.
+  const densityArea = 12000; // Set the approximate area occupied by each node in square pixels.
+  const maximumNodes = 115; // Prevent expensive rendering on very large monitors.
+  const normalLinkDistance = 155; // Connect nearby vertices with faint lines.
+  const cursorLinkDistance = 185; // Draw additional links around the passing cursor.
+  const cursorInfluence = 135; // Define how far the mouse can displace nearby vertices.
+  const maximumPixelRatio = 1.7; // Limit high-density rendering for battery efficiency.
+  const targetFrameInterval = 1000 / 30; // Aim for smooth but moderate 30 FPS animation.
+  let width = 0; // Store the current viewport width.
+  let height = 0; // Store the current viewport height.
+  let frameId = 0; // Hold the scheduled animation frame identifier.
+  let previousFrame = 0; // Hold the timestamp of the last rendered frame.
+  let seed = 1741; // Seed deterministic node positions for a consistent layout.
 
-  const media = window.matchMedia("(prefers-reduced-motion: reduce)"); // Detect the visitor's motion preference.
-  const nodes = []; // Store the positions of sparse, understated reference points.
-  const maximumPixels = 1.7; // Cap pixel density to limit CPU and battery use.
-  const lineCount = 16; // Define the number of faint, topographic-style curves.
-  let width = 0; // Store the drawable width in CSS pixels.
-  let height = 0; // Store the drawable height in CSS pixels.
-  let frameId = 0; // Keep track of the current animation request.
-  let startTime = 0; // Remember when the animation began.
-  let lastFrame = 0; // Store the previous frame time for frame limiting.
+  const random = () => { // Produce predictable pseudo-random coordinates without external libraries.
+    seed = (seed * 1664525 + 1013904223) >>> 0; // Advance a linear congruential generator.
+    return seed / 4294967296; // Return a number in the interval from zero to one.
+  }; // End the random-number generator.
 
-  const random = (seed) => { // Return a repeatable pseudo-random value for a given seed.
-    return (Math.sin(seed * 78.233 + 19.19) * 43758.5453) % 1; // Generate deterministic variation without external libraries.
-  }; // Finish the random-number helper.
+  const palette = () => { // Select colors that fit the existing light and dark themes.
+    const dark = document.documentElement.dataset.theme === "dark"; // Read the theme already managed by script.js.
+    return { // Supply low-contrast academic colors rather than bright neon effects.
+      link: dark ? "115, 155, 145" : "67, 104, 96", // Set the RGB color of the network edges.
+      dot: dark ? "167, 198, 188" : "67, 104, 96", // Set the RGB color of the node centers.
+      hover: dark ? "190, 218, 207" : "42, 93, 82" // Set the RGB color of mouse-activated links.
+    }; // Finish the palette object.
+  }; // End the theme palette helper.
 
-  const pick = (seed) => { // Convert the pseudo-random value into a positive range.
-    return Math.abs(random(seed)); // Return a value between zero and one.
-  }; // Finish the positive-number helper.
+  const createNodes = () => { // Create a loosely distributed constellation of moving points.
+    nodes.length = 0; // Remove node coordinates from the previous viewport size.
+    seed = 1741; // Restore deterministic generation after resizing.
+    const count = Math.min(maximumNodes, Math.max(32, Math.round(width * height / densityArea))); // Match node count to viewport area.
+    const columns = Math.max(4, Math.round(Math.sqrt(count * width / Math.max(height, 1)))); // Choose a balanced number of invisible layout columns.
+    const rows = Math.ceil(count / columns); // Choose enough invisible layout rows for the nodes.
+    for (let index = 0; index < count; index += 1) { // Populate each position in the graph.
+      const column = index % columns; // Determine the node's nominal horizontal slot.
+      const row = Math.floor(index / columns); // Determine the node's nominal vertical slot.
+      const x = ((column + 0.25 + random() * 0.5) / columns) * width; // Jitter the horizontal coordinate to avoid a rigid grid.
+      const y = ((row + 0.25 + random() * 0.5) / rows) * height; // Jitter the vertical coordinate to avoid a rigid grid.
+      nodes.push({ baseX: x, baseY: y, x, y, vx: 0, vy: 0, phase: random() * Math.PI * 2, radius: 1 + random() * 0.65 }); // Store the position, velocity, motion phase, and dot radius.
+    } // Finish creating vertices.
+  }; // End the node generator.
 
-  const resize = () => { // Keep the canvas sharp when the window changes size.
-    width = window.innerWidth; // Read the current viewport width.
-    height = window.innerHeight; // Read the current viewport height.
-    const ratio = Math.min(window.devicePixelRatio || 1, maximumPixels); // Avoid excessive retina rendering costs.
-    canvas.width = Math.round(width * ratio); // Assign the physical pixel width.
-    canvas.height = Math.round(height * ratio); // Assign the physical pixel height.
-    context.setTransform(ratio, 0, 0, ratio, 0, 0); // Draw using ordinary CSS pixel coordinates.
-    nodes.length = 0; // Clear the previous set of small reference points.
-    const count = Math.min(38, Math.max(14, Math.round(width * height / 31000))); // Scale the point density to the screen.
-    for (let index = 0; index < count; index += 1) { // Create every small reference point.
-      nodes.push({ x: pick(index + 3) * width, y: pick(index + 91) * height, radius: 0.8 + pick(index + 153) * 1.1 }); // Save its position and radius.
-    } // Finish generating the points.
-    draw(0); // Paint a frame immediately after resizing.
-  }; // Finish the resize handler.
+  const drawLine = (x1, y1, x2, y2, color, opacity, thickness) => { // Draw a single translucent network connection.
+    context.strokeStyle = `rgba(${color}, ${opacity})`; // Set the edge color and alpha independently.
+    context.lineWidth = thickness; // Keep edges fine and understated.
+    context.beginPath(); // Start an independent path for this edge.
+    context.moveTo(x1, y1); // Set the start of the line.
+    context.lineTo(x2, y2); // Set the endpoint of the line.
+    context.stroke(); // Paint the line on the transparent canvas.
+  }; // End the edge renderer.
 
-  const draw = (elapsed) => { // Render one frame of the contour illustration.
-    context.clearRect(0, 0, width, height); // Remove the previous frame without covering the page.
-    const dark = document.documentElement.dataset.theme === "dark"; // Match the site's current light/dark mode.
-    const stroke = dark ? "rgba(169, 192, 183, 0.23)" : "rgba(76, 112, 104, 0.16)"; // Choose muted contour colours.
-    const points = dark ? "rgba(169, 192, 183, 0.36)" : "rgba(76, 112, 104, 0.28)"; // Choose subtle dot colours.
-    const time = elapsed * 0.00006; // Convert elapsed milliseconds into very slow motion.
-    context.lineWidth = 0.8; // Draw thin lines instead of dominant decorative shapes.
-    context.strokeStyle = stroke; // Apply the chosen contour colour.
+  const draw = () => { // Render links, cursor interactions, and vertices for one frame.
+    context.clearRect(0, 0, width, height); // Preserve transparency behind the website content.
+    const colors = palette(); // Match the graph to the current theme.
+    const linkDistanceSquared = normalLinkDistance * normalLinkDistance; // Compare distances without repeated square roots.
+    const cursorDistanceSquared = cursorLinkDistance * cursorLinkDistance; // Calculate the mouse connection range squared.
+    for (let i = 0; i < nodes.length; i += 1) { // Visit each source vertex once.
+      const first = nodes[i]; // Read the source node position.
+      for (let j = i + 1; j < nodes.length; j += 1) { // Visit only subsequent nodes to avoid duplicate edges.
+        const second = nodes[j]; // Read the target node position.
+        const dx = first.x - second.x; // Calculate the horizontal separation.
+        const dy = first.y - second.y; // Calculate the vertical separation.
+        const distanceSquared = dx * dx + dy * dy; // Calculate squared Euclidean distance.
+        if (distanceSquared > linkDistanceSquared) continue; // Skip distant graph vertices.
+        const strength = 1 - Math.sqrt(distanceSquared) / normalLinkDistance; // Fade links smoothly with distance.
+        drawLine(first.x, first.y, second.x, second.y, colors.link, 0.07 + strength * 0.18, 0.65); // Display a faint underlying network edge.
+      } // Finish the target-node loop.
+    } // Finish drawing standard network edges.
+    for (const node of nodes) { // Draw the currently visible node centers.
+      const dx = node.x - cursor.x; // Measure the node's horizontal distance to the mouse.
+      const dy = node.y - cursor.y; // Measure the node's vertical distance to the mouse.
+      const distanceSquared = dx * dx + dy * dy; // Calculate squared cursor-to-node distance.
+      const nearCursor = cursor.active && distanceSquared < cursorDistanceSquared; // Identify nodes inside the hover region.
+      const hoverStrength = nearCursor ? 1 - Math.sqrt(distanceSquared) / cursorLinkDistance : 0; // Fade hover effects at the interaction boundary.
+      if (nearCursor) drawLine(cursor.x, cursor.y, node.x, node.y, colors.hover, hoverStrength * 0.38, 0.85); // Connect the mouse to nearby nodes without clicking.
+      context.fillStyle = `rgba(${nearCursor ? colors.hover : colors.dot}, ${0.35 + hoverStrength * 0.52})`; // Brighten only nearby vertices.
+      context.beginPath(); // Start the circular node path.
+      context.arc(node.x, node.y, node.radius + hoverStrength * 1.0, 0, Math.PI * 2); // Draw a modestly enlarged hovered vertex.
+      context.fill(); // Paint the vertex.
+    } // Finish rendering vertices and hover links.
+  }; // End the canvas drawing function.
 
-    for (let line = 0; line < lineCount; line += 1) { // Draw each scientific contour separately.
-      const baseline = (line + 0.6) * height / lineCount; // Space the curves evenly down the screen.
-      const variation = (line % 4) * 2.4; // Vary the curve heights so they are not identical.
-      context.beginPath(); // Start one independent curve.
-      for (let x = -20; x <= width + 20; x += 9) { // Trace the curve in small horizontal steps.
-        const broadWave = Math.sin(x * 0.0034 + line * 0.27 + time) * (16 + variation); // Create broad smooth undulations.
-        const fineWave = Math.sin(x * 0.009 - line * 0.51 - time * 0.7) * 5; // Add a second, gentle frequency.
-        const y = baseline + broadWave + fineWave; // Combine both movements into one line.
-        if (x === -20) context.moveTo(x, y); // Begin the path at its leftmost point.
-        else context.lineTo(x, y); // Continue the path across the page.
-      } // Finish tracing the current curve.
-      context.stroke(); // Display the finished fine contour.
-    } // Finish all the curves.
+  const updatePositions = (time) => { // Apply ambient drift and a smooth mouse-repulsion field.
+    for (const node of nodes) { // Update each vertex independently.
+      const driftX = Math.sin(time * 0.00024 + node.phase) * 7; // Create slow natural horizontal oscillation.
+      const driftY = Math.cos(time * 0.00020 + node.phase * 1.3) * 7; // Create slow natural vertical oscillation.
+      const homeX = node.baseX + driftX; // Define the node's gently moving resting x-coordinate.
+      const homeY = node.baseY + driftY; // Define the node's gently moving resting y-coordinate.
+      let forceX = (homeX - node.x) * 0.025; // Apply a spring pulling the node toward its resting x-coordinate.
+      let forceY = (homeY - node.y) * 0.025; // Apply a spring pulling the node toward its resting y-coordinate.
+      const dx = node.x - cursor.x; // Measure horizontal cursor displacement.
+      const dy = node.y - cursor.y; // Measure vertical cursor displacement.
+      const distance = Math.sqrt(dx * dx + dy * dy); // Calculate true distance to the cursor.
+      if (cursor.active && distance < cursorInfluence) { // Respond whenever the mouse passes near the node.
+        const strength = (1 - distance / cursorInfluence) ** 2; // Make the motion stronger nearer the mouse.
+        forceX += (dx / Math.max(distance, 1)) * strength * 1.7; // Gently push the node away along the x-axis.
+        forceY += (dy / Math.max(distance, 1)) * strength * 1.7; // Gently push the node away along the y-axis.
+      } // Finish applying the mouse repulsion force.
+      node.vx = (node.vx + forceX) * 0.88; // Apply horizontal velocity with damping to prevent jitter.
+      node.vy = (node.vy + forceY) * 0.88; // Apply vertical velocity with damping to prevent jitter.
+      node.x += node.vx; // Integrate the horizontal displacement.
+      node.y += node.vy; // Integrate the vertical displacement.
+    } // Finish updating the graph's points.
+  }; // End the motion engine.
 
-    context.fillStyle = points; // Apply the quiet dot colour.
-    for (const node of nodes) { // Draw each little reference point.
-      const drift = Math.sin(time * 1.4 + node.x * 0.012) * 3; // Make the dots move almost imperceptibly.
-      context.beginPath(); // Begin a new circle.
-      context.arc(node.x, node.y + drift, node.radius, 0, Math.PI * 2); // Draw the dot at its current location.
-      context.fill(); // Fill the circular point.
-    } // Finish drawing the points.
-  }; // Finish the frame renderer.
+  const renderFrame = (timestamp) => { // Run the animation using the browser's frame scheduler.
+    if (timestamp - previousFrame >= targetFrameInterval) { // Limit drawing work to approximately 30 FPS.
+      updatePositions(timestamp); // Advance the network and cursor spring physics.
+      draw(); // Draw the current network configuration.
+      previousFrame = timestamp; // Record the last successful render time.
+    } // Finish the frame-rate check.
+    frameId = window.requestAnimationFrame(renderFrame); // Schedule the next animation update.
+  }; // End the animation loop.
 
-  const animate = (timestamp) => { // Run the animation at a deliberately modest frame rate.
-    if (!startTime) startTime = timestamp; // Set the first animation timestamp.
-    if (timestamp - lastFrame >= 1000 / 24) { // Render no faster than approximately 24 fps.
-      draw(timestamp - startTime); // Draw the next illustration frame.
-      lastFrame = timestamp; // Record the time of this frame.
-    } // Finish the optional frame render.
-    frameId = window.requestAnimationFrame(animate); // Schedule the following animation frame.
-  }; // Finish the animation loop.
+  const refreshAnimation = () => { // Respect motion preferences and pause the effect on hidden tabs.
+    window.cancelAnimationFrame(frameId); // Stop any previously scheduled animation loop.
+    frameId = 0; // Clear the outstanding frame identifier.
+    previousFrame = 0; // Reset the frame timing after resuming.
+    if (!reducedMotion.matches && !document.hidden) frameId = window.requestAnimationFrame(renderFrame); // Animate only when allowed and visible.
+    else draw(); // Keep a static network visible when animation is disabled.
+  }; // End the animation controller.
 
-  const updateAnimation = () => { // Start or stop movement when conditions change.
-    window.cancelAnimationFrame(frameId); // Prevent duplicate animation loops.
-    frameId = 0; // Clear the previous request identifier.
-    draw(0); // Always show a static background illustration.
-    if (!media.matches && !document.hidden) frameId = window.requestAnimationFrame(animate); // Animate only when permitted and visible.
-  }; // Finish animation preference handling.
+  const resize = () => { // Adapt the network to the current browser viewport.
+    width = window.innerWidth; // Read the current available width.
+    height = window.innerHeight; // Read the current available height.
+    const ratio = Math.min(window.devicePixelRatio || 1, maximumPixelRatio); // Choose a modest canvas resolution for performance.
+    canvas.width = Math.round(width * ratio); // Set the physical pixel width.
+    canvas.height = Math.round(height * ratio); // Set the physical pixel height.
+    context.setTransform(ratio, 0, 0, ratio, 0, 0); // Keep drawing coordinates measured in CSS pixels.
+    createNodes(); // Generate nodes for the updated viewport.
+    draw(); // Paint the updated background immediately.
+  }; // End the resize handler.
 
-  window.addEventListener("resize", resize, { passive: true }); // Update the canvas when the browser changes size.
-  document.addEventListener("visibilitychange", updateAnimation); // Pause while the page is not visible.
-  media.addEventListener("change", updateAnimation); // Respond to the visitor's accessibility settings.
-  resize(); // Initialize the drawing dimensions and sample points.
-  updateAnimation(); // Start the optional subtle animation.
-})(); // Keep all background logic out of the global namespace.
+  const moveCursor = (event) => { // Detect hover directly through window events without canvas click handling.
+    if (event.pointerType === "touch") return; // Avoid unwanted mouse-like effects while scrolling on touchscreens.
+    cursor.x = event.clientX; // Store the pointer's horizontal viewport coordinate.
+    cursor.y = event.clientY; // Store the pointer's vertical viewport coordinate.
+    cursor.active = true; // Enable nearby links and mouse-responsive movement.
+    if (reducedMotion.matches) draw(); // Update static hover highlighting without continuous animation.
+  }; // End the mouse movement handler.
+
+  const leaveCursor = () => { // Disable hover effects when the mouse exits the viewport.
+    cursor.active = false; // Stop drawing mouse-to-node connections.
+    cursor.x = -1000; // Move the reference cursor outside the drawable region.
+    cursor.y = -1000; // Move the reference cursor outside the drawable region.
+    if (reducedMotion.matches) draw(); // Remove cursor highlights in reduced-motion mode.
+  }; // End the cursor exit handler.
+
+  window.addEventListener("pointermove", moveCursor, { passive: true }); // Listen for mouse movement even above text, cards, and buttons.
+  document.addEventListener("pointerleave", leaveCursor); // Stop hover response when the pointer leaves the page.
+  window.addEventListener("blur", leaveCursor); // Reset hover when the window loses focus.
+  window.addEventListener("resize", resize, { passive: true }); // Rebuild network geometry after viewport changes.
+  document.addEventListener("visibilitychange", refreshAnimation); // Pause animation while the browser tab is hidden.
+  reducedMotion.addEventListener("change", refreshAnimation); // Honor changes to reduced-motion accessibility preferences.
+  const themeObserver = new MutationObserver(draw); // Refresh colors when the existing site's theme changes.
+  themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] }); // Watch only the site's theme attribute.
+  resize(); // Render the initial network without modifying the existing page structure.
+  refreshAnimation(); // Activate the mouse-responsive network animation.
+})(); // End the isolated background module.
