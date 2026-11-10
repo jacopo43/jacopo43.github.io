@@ -255,7 +255,7 @@ h1,h2,h3 {
 }
 
 h1 {
-  font-size:clamp(56px,7vw,92px);
+  font-size: clamp(36px, 5vw, 65px);
   letter-spacing:-5px;
   line-height:1.08;
   margin:8px 0 20px;
@@ -1448,4 +1448,60 @@ h1 {
     font-size: 10px;
   }
 
+}
+
+/* About: academic experience and education, integrated as readable text columns. */
+.academic-history {
+  display: grid; /* Keep research experience and education in separate columns. */
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); /* Share the available content width evenly. */
+  gap: 48px; /* Provide space between the columns. */
+  margin-top: 55px; /* Separate the history from the introductory biography. */
+}
+.history-column h3 {
+  font-size: 22px; /* Establish a clear subsection heading. */
+  margin-bottom: 26px; /* Separate headings from the first entry. */
+}
+.history-entry {
+  border-left: 1px solid var(--line); /* Keep the timeline visually understated. */
+  padding: 0 0 25px 20px; /* Add breathing room around each item. */
+  margin-bottom: 10px; /* Separate successive academic entries. */
+}
+.history-date {
+  display: block; /* Put each date on its own line. */
+  color: var(--primary); /* Reuse the current website accent. */
+  font-size: 12px; /* Keep dates subordinate to titles. */
+  font-weight: 700; /* Improve date legibility. */
+  margin-bottom: 7px; /* Space dates and roles. */
+}
+.history-entry h4 {
+  font-size: 16px; /* Maintain an accessible content hierarchy. */
+  margin: 0 0 8px; /* Separate titles and descriptions. */
+  line-height: 1.45; /* Support long academic titles. */
+}
+.history-entry p {
+  margin: 0; /* Prevent oversized spacing in the timeline. */
+  color: var(--muted); /* Match existing body copy. */
+  font-size: 14px; /* Preserve compact informational styling. */
+  line-height: 1.75; /* Keep descriptions readable. */
+}
+@media (max-width: 760px) {
+  .academic-history {
+    grid-template-columns: 1fr; /* Stack history columns on smaller screens. */
+    gap: 28px; /* Retain comfortable vertical separation. */
+  }
+}
+
+/* Academic links: distinguish university and department links without changing the timeline layout. */
+.history-entry a,
+.about-copy a:not(.text-link),
+.facts-card strong a {
+  color: var(--primary); /* Reuse the site's existing light/dark accent. */
+  text-decoration: underline; /* Make external academic links recognizable. */
+  text-decoration-thickness: 1px; /* Keep underline subtle. */
+  text-underline-offset: 3px; /* Improve readability. */
+}
+.history-entry a:hover,
+.about-copy a:not(.text-link):hover,
+.facts-card strong a:hover {
+  color: var(--primary-deep); /* Indicate links on hover. */
 }

@@ -9,30 +9,42 @@ const translations = {
     navProjects:"Progetti",
     navPublications:"Pubblicazioni",
     navContact:"Contatti",
-    eyebrow:"Portfolio accademico · Disponibile per collaborazioni",
+    // eyebrow:"Portfolio accademico · Disponibile per collaborazioni",
     hello:"Ciao, sono",
     role:"Ricerca · Statistica · Data Science",
     heroDescription:"Studio come trasformare dati complessi in conoscenza affidabile, combinando metodi statistici, machine learning e ricerca interdisciplinare.",
     explore:"Esplora la ricerca",
-    downloadCV:"Scarica il CV",
-    chipOne:"Curiosità e metodo",
-    chipTwo:"Dati → conoscenza",
     scroll:"Scopri di più",
-    aboutTitle:"Un po' di me<span class='accent'>.</span>",
-    aboutLead:"Un approccio rigoroso, aperto e interdisciplinare.",
-    aboutP1:"Sono un ricercatore interessato all'analisi dei dati e allo sviluppo di metodi quantitativi per affrontare problemi reali.",
-    aboutP2:"Il mio lavoro si colloca all'intersezione tra statistica, machine learning e applicazioni scientifiche. Mi piace costruire strumenti riproducibili, collaborare e comunicare risultati in modo chiaro.",
+    aboutTitle:"About me<span class='accent'>.</span>",
+    aboutP1:"Sono dottorando in Health & Technologies all’Università di Bologna, dove mi occupo di farmacovigilanza e di metodi statistici e computazionali per individuare segnali di interazioni tra farmaci.",
+    aboutP2:"Il mio percorso unisce statistica, data science e ricerca biomedica. Dopo le esperienze di studio e ricerca in Belgio, ho lavorato come assegnista di ricerca presso il <a href=\"https://dibinem.unibo.it/it\" target=\"_blank\" rel=\"noopener noreferrer\">Dipartimento di Scienze Biomediche e Neuromotorie (DiBiNem)</a> dell’Università di Bologna.",
     getInTouch:"Parliamone",
     factLocation:"Sede",
     factArea:"Ambiti",
     factAreaValue:"Statistica · AI · Ricerca",
     factAffiliation:"Affiliazione",
-    factAffiliationValue:"Università / Centro di ricerca",
+    factAffiliationValue:"Università di Bologna · <a href=\"https://ingegneriaindustriale.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIN</a> / <a href=\"https://dimec.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIMEC</a>",
     factEmail:"Email",
+    experienceHeading:"Esperienze di ricerca", // Testo per la sezione About.
+    phdPeriod:"2026 – in corso", // Testo per la sezione About.
+    phdRole:"Dottorando · Università di Bologna", // Testo per la sezione About.
+    phdDescription:"Dottorato in <a href=\"https://phd.unibo.it/hat/en\" target=\"_blank\" rel=\"noopener noreferrer\">Health &amp; Technologies</a>, con affiliazione ai dipartimenti <a href=\"https://ingegneriaindustriale.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIN</a> e <a href=\"https://dimec.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIMEC</a> dell’Università di Bologna. Progetto di ricerca: <em>Drug–Drug Interaction Signal Detection in Pharmacovigilance: Causal-Informed Statistical and Computational Methods for Spontaneous Reporting Data</em>.", // Testo per la sezione About.
+    fellowRole:"Assegnista di ricerca · Università di Bologna", // Testo per la sezione About.
+    fellowDescription:"Attività di ricerca presso il <a href=\"https://dibinem.unibo.it/it\" target=\"_blank\" rel=\"noopener noreferrer\">Dipartimento di Scienze Biomediche e Neuromotorie (DiBiNem)</a> dell’Università di Bologna, dalla raccolta e analisi dei dati alla preparazione di articoli scientifici.", // Testo per la sezione About.
+    thesisRole:"Tesi magistrale · <a href=\"https://www.ulb.be/\" target=\"_blank\" rel=\"noopener noreferrer\">ULB</a>, Bruxelles", // Testo per la sezione About.
+    thesisDescription:"Analisi e miglioramento di un metodo di inferenza causale per dati temporali (serie storiche), presso il <a href=\"https://mlg.ulb.ac.be/\" target=\"_blank\" rel=\"noopener noreferrer\">Machine Learning Group (MLG)</a> della <a href=\"https://www.ulb.be/\" target=\"_blank\" rel=\"noopener noreferrer\">Université libre de Bruxelles (ULB)</a>.", // Testo per la sezione About.
+    erasmusRole:"Erasmus · <a href=\"https://uclouvain.be/fr\" target=\"_blank\" rel=\"noopener noreferrer\">UCLouvain</a>, Louvain-la-Neuve", // Testo per la sezione About.
+    erasmusDescription:"Partecipazione a progetti di ricerca di gruppo nell’analisi dei dati e nel machine learning.", // Testo per la sezione About.
+    educationHeading:"Formazione", // Testo per la sezione About.
+    masterTitle:"<a href=\"https://corsi.unibo.it/magistrale/StatisticalSciences\" target=\"_blank\" rel=\"noopener noreferrer\">Laurea magistrale in Scienze Statistiche</a>", // Testo per la sezione About.
+    masterDescription:"Curriculum Data Science · Università di Bologna (UNIBO), Bologna.", // Testo per la sezione About.
+    bachelorTitle:"<a href=\"https://corsi.unibo.it/laurea/ScienzeStatistiche\" target=\"_blank\" rel=\"noopener noreferrer\">Laurea triennale in Scienze Statistiche</a>", // Testo per la sezione About.
+    bachelorDescription:"Curriculum Economia · Università di Bologna (UNIBO), Bologna.", // Testo per la sezione About.
+    schoolTitle:"Diploma di liceo scientifico", // Testo per la sezione About.
+    schoolDescription:"Bologna.", // Testo per la sezione About.
     networkHint:"Esplora le connessioni: trascina i punti o seleziona un interesse.",
     networkReset:"Ripristina disposizione",
     researchTitle:"Interessi di ricerca<span class='accent'>.</span>",
-    researchLead:"Domande concrete, strumenti quantitativi e risultati riproducibili.",
     research1Title:"Statistica & inferenza",
     research1Description:"Modelli statistici, disegno degli studi e analisi rigorose dell'incertezza.",
     research2Title:"Machine learning",
@@ -40,7 +52,6 @@ const translations = {
     research3Title:"Applicazioni scientifiche",
     research3Description:"Integrazione dei dati e metodologie riproducibili per la ricerca.",
     projectsTitle:"Progetti selezionati<span class='accent'>.</span>",
-    projectsLead:"Una selezione di idee, strumenti e collaborazioni.",
     projectType1:"Software · Open source",
     project1Title:"Progetto di analisi dati",
     project1Description:"Una pipeline riproducibile per elaborare, analizzare e visualizzare dati complessi.",
@@ -52,14 +63,6 @@ const translations = {
     project3Description:"Un'interfaccia intuitiva per esplorare i risultati e supportare le decisioni.",
     viewProject:"Vedi il progetto",
     publicationsTitle:"Pubblicazioni<span class='accent'>.</span>",
-    publicationsLead:"Articoli e lavori: sostituisci gli esempi con le tue citazioni reali.",
-    pubLabel1:"Articolo · esempio",
-    pubLabel2:"Preprint · esempio",
-    pub1Title:"Titolo della tua pubblicazione scientifica",
-    pub1Authors:"Nome Cognome, Coautore A, Coautore B · Rivista / Conferenza",
-    pub2Title:"Un secondo lavoro o preprint",
-    pub2Authors:"Nome Cognome, Coautore C · Repository / Rivista",
-    pubNote:"Queste pubblicazioni sono segnaposto: sostituiscile prima di pubblicare il sito.",
     contactTitle:"Costruiamo qualcosa <em>insieme.</em>",
     contactDescription:"Hai un'idea di ricerca, una proposta di collaborazione o semplicemente una domanda? Scrivimi.",
     writeEmail:"Scrivimi un'email",
@@ -73,30 +76,42 @@ const translations = {
     navProjects:"Projects",
     navPublications:"Publications",
     navContact:"Contact",
-    eyebrow:"Academic portfolio · Open to collaborations",
+    // eyebrow:"Academic portfolio · Open to collaborations",
     hello:"Hello, I'm",
     role:"Research · Statistics · Data Science",
     heroDescription:"I explore how to turn complex data into reliable knowledge by combining statistical methods, machine learning and interdisciplinary research.",
     explore:"Explore research",
-    downloadCV:"Download CV",
-    chipOne:"Curiosity & rigour",
-    chipTwo:"Data → knowledge",
     scroll:"Explore more",
-    aboutTitle:"A little about me<span class='accent'>.</span>",
-    aboutLead:"A rigorous, open and interdisciplinary approach.",
-    aboutP1:"I am a researcher interested in data analysis and the development of quantitative methods to address real-world problems.",
-    aboutP2:"My work lies at the intersection of statistics, machine learning and scientific applications. I enjoy building reproducible tools, collaborating and communicating findings clearly.",
+    aboutTitle:"About me<span class='accent'>.</span>",
+    aboutP1:"I am a PhD candidate in Health & Technologies at the University of Bologna, researching pharmacovigilance and statistical and computational methods for detecting drug–drug interaction signals.",
+    aboutP2:"My background combines statistics, data science, and biomedical research. Following study and research experiences in Belgium, I worked as a research fellow at the <a href=\"https://dibinem.unibo.it/it\" target=\"_blank\" rel=\"noopener noreferrer\">Department of Biomedical and Neuromotor Sciences (DiBiNem)</a>, University of Bologna.",
     getInTouch:"Let's connect",
     factLocation:"Based in",
     factArea:"Fields",
     factAreaValue:"Statistics · AI · Research",
     factAffiliation:"Affiliation",
-    factAffiliationValue:"University / Research Centre",
+    factAffiliationValue:"University of Bologna · <a href=\"https://ingegneriaindustriale.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIN</a> / <a href=\"https://dimec.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIMEC</a>",
     factEmail:"Email",
+    experienceHeading:"Research experience", // About section translation.
+    phdPeriod:"2026 – Present", // About section translation.
+    phdRole:"PhD candidate · University of Bologna", // About section translation.
+    phdDescription:"PhD in <a href=\"https://phd.unibo.it/hat/en\" target=\"_blank\" rel=\"noopener noreferrer\">Health &amp; Technologies</a>, affiliated with the University of Bologna’s <a href=\"https://ingegneriaindustriale.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIN</a> and <a href=\"https://dimec.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIMEC</a> departments. Research project: <em>Drug–Drug Interaction Signal Detection in Pharmacovigilance: Causal-Informed Statistical and Computational Methods for Spontaneous Reporting Data</em>.", // About section translation.
+    fellowRole:"Research fellow · University of Bologna", // About section translation.
+    fellowDescription:"Research projects at the <a href=\"https://dibinem.unibo.it/it\" target=\"_blank\" rel=\"noopener noreferrer\">Department of Biomedical and Neuromotor Sciences (DiBiNem)</a>, University of Bologna, including data collection, analysis, and preparation of scientific publications.", // About section translation.
+    thesisRole:"Master’s thesis · <a href=\"https://www.ulb.be/\" target=\"_blank\" rel=\"noopener noreferrer\">ULB</a>, Brussels", // About section translation.
+    thesisDescription:"Analysing and improving a causal inference method for temporal data (time series) at the <a href=\"https://mlg.ulb.ac.be/\" target=\"_blank\" rel=\"noopener noreferrer\">Machine Learning Group (MLG)</a> of the <a href=\"https://www.ulb.be/\" target=\"_blank\" rel=\"noopener noreferrer\">Université libre de Bruxelles (ULB)</a>.", // About section translation.
+    erasmusRole:"Erasmus · <a href=\"https://uclouvain.be/fr\" target=\"_blank\" rel=\"noopener noreferrer\">UCLouvain</a>, Louvain-la-Neuve", // About section translation.
+    erasmusDescription:"Participation in group research projects in data analysis and machine learning.", // About section translation.
+    educationHeading:"Education", // About section translation.
+    masterTitle:"<a href=\"https://corsi.unibo.it/magistrale/StatisticalSciences\" target=\"_blank\" rel=\"noopener noreferrer\">Master’s degree in Statistical Sciences</a>", // About section translation.
+    masterDescription:"Data Science curriculum · University of Bologna (UNIBO), Bologna.", // About section translation.
+    bachelorTitle:"<a href=\"https://corsi.unibo.it/laurea/ScienzeStatistiche\" target=\"_blank\" rel=\"noopener noreferrer\">Bachelor’s degree in Statistical Sciences</a>", // About section translation.
+    bachelorDescription:"Economics curriculum · University of Bologna (UNIBO), Bologna.", // About section translation.
+    schoolTitle:"Scientific high school diploma", // About section translation.
+    schoolDescription:"Bologna.", // About section translation.
     networkHint:"Explore connections: drag nodes or select a research interest.",
     networkReset:"Reset layout",
     researchTitle:"Research interests<span class='accent'>.</span>",
-    researchLead:"Real questions, quantitative tools, reproducible results.",
     research1Title:"Statistics & inference",
     research1Description:"Statistical models, study design and rigorous uncertainty analysis.",
     research2Title:"Machine learning",
@@ -104,7 +119,6 @@ const translations = {
     research3Title:"Scientific applications",
     research3Description:"Data integration and reproducible methods for research.",
     projectsTitle:"Selected projects<span class='accent'>.</span>",
-    projectsLead:"A selection of ideas, tools and collaborations.",
     projectType1:"Software · Open source",
     project1Title:"Data analysis project",
     project1Description:"A reproducible pipeline for processing, analysing and visualising complex data.",
@@ -116,14 +130,6 @@ const translations = {
     project3Description:"An intuitive interface to explore results and support decision-making.",
     viewProject:"View project",
     publicationsTitle:"Publications<span class='accent'>.</span>",
-    publicationsLead:"Papers and preprints: replace these examples with your actual citations.",
-    pubLabel1:"Article · example",
-    pubLabel2:"Preprint · example",
-    pub1Title:"Title of your scientific publication",
-    pub1Authors:"Name Surname, Coauthor A, Coauthor B · Journal / Conference",
-    pub2Title:"Another paper or preprint",
-    pub2Authors:"Name Surname, Coauthor C · Repository / Journal",
-    pubNote:"These publications are placeholders: replace them before publishing.",
     contactTitle:"Let's build something <em>together.</em>",
     contactDescription:"Have a research idea, collaboration proposal or simply a question? Feel free to get in touch.",
     writeEmail:"Send me an email",
@@ -149,9 +155,9 @@ function setLanguage(lang) {
   });
   document.documentElement.lang = lang; // Keep the HTML language correct for screen readers.
   languageLabel.textContent = lang === 'it' ? 'EN' : 'IT'; // Show the other language.
-  document.title = lang === 'it' ? 'Nome Cognome · Ricerca & Dati' : 'Name Surname · Research & Data'; // Translate the browser tab.
+  document.title = lang === 'it' ? 'Jacopo Palombarini · Ricerca & Dati' : 'Jacopo Palombarini · Research & Data'; // Translate the browser tab.
   const description = document.querySelector('meta[name="description"]'); // Locate the page description.
-  description.content = lang === 'it' ? 'Sito personale accademico: ricerca, progetti, pubblicazioni e contatti.' : 'Academic portfolio: research, projects, publications and contact.'; // Translate search metadata.
+  // description.content = lang === 'it' ? 'Sito personale accademico: ricerca, progetti, pubblicazioni e contatti.' : 'Academic portfolio: research, projects, publications and contact.'; // Translate search metadata.
   refreshResearchGraphLabels(); // Translate graph labels if the graph has been initialized.
   try {
     localStorage.setItem('site-language', lang); // Remember the language locally.
@@ -213,14 +219,6 @@ if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-mot
   document.querySelectorAll('.reveal').forEach(element => observer.observe(element)); // Register reveal sections.
 }
 
-/* Keep the existing CV placeholder warning until a real CV has been uploaded. */
-const cvLink = document.getElementById('cv-link'); // CV download button.
-cvLink.addEventListener('click', event => { // Intercept downloads while the sample site has no CV.
-  event.preventDefault(); // Avoid navigating to a nonexistent document.
-  const message = document.documentElement.lang === 'it' ? 'Aggiungi prima il tuo CV in cv/CV.pdf (vedi README).' : 'Please add your CV at cv/CV.pdf first (see README).'; // Prepare the bilingual warning.
-  window.alert(message); // Explain how to enable CV downloads.
-});
-
 /* Research-network dataset: change labels and connections here, not in the SVG. */
 const graphNodes = [
   { id: 'statistics', x: .26, y: .37, type: 'main', key: 1 }, // First main research theme.
@@ -231,7 +229,19 @@ const graphNodes = [
   { id: 'causality', x: .46, y: .12, type: 'secondary', label: 'Causality' }, // Supporting topic.
   { id: 'explainability', x: .88, y: .49, type: 'secondary', label: 'XAI' }, // Supporting topic.
   { id: 'data', x: .87, y: .84, type: 'secondary', label: 'Data' }, // Supporting topic.
-  { id: 'open', x: .34, y: .90, type: 'secondary', label: 'Open science' } // Supporting topic.
+  { id: 'open', x: .34, y: .90, type: 'secondary', label: 'Open science' }, // Supporting topic.
+  { id: 'regression', x: .40, y: .34, type: 'secondary', label: 'Regression' }, // Editable additional research topic.
+  { id: 'bayes', x: .40, y: .60, type: 'secondary', label: 'Bayesian methods' }, // Editable additional research topic.
+  { id: 'experiments', x: .08, y: .46, type: 'secondary', label: 'Study design' }, // Editable additional research topic.
+  { id: 'optimization', x: .58, y: .14, type: 'secondary', label: 'Optimization' }, // Editable additional research topic.
+  { id: 'nlp', x: .84, y: .14, type: 'secondary', label: 'NLP' }, // Editable additional research topic.
+  { id: 'deep', x: .80, y: .63, type: 'secondary', label: 'Deep learning' }, // Editable additional research topic.
+  { id: 'prediction', x: .52, y: .45, type: 'secondary', label: 'Prediction' }, // Editable additional research topic.
+  { id: 'pharmaco', x: .71, y: .91, type: 'secondary', label: 'Pharmacovigilance' }, // Editable additional research topic.
+  { id: 'epidemiology', x: .18, y: .90, type: 'secondary', label: 'Epidemiology' }, // Editable additional research topic.
+  { id: 'reproducibility', x: .45, y: .82, type: 'secondary', label: 'Reproducibility' }, // Editable additional research topic.
+  { id: 'simulation', x: .29, y: .13, type: 'secondary', label: 'Simulation' }, // Editable additional research topic.
+  { id: 'networks', x: .94, y: .27, type: 'secondary', label: 'Networks' }, // Editable additional research topic.
 ];
 const graphEdges = [
   ['statistics', 'ml'], // Statistics and ML connect.
@@ -245,7 +255,28 @@ const graphEdges = [
   ['applications', 'explainability'], // Interpretability applies to research.
   ['applications', 'data'], // Applications use data.
   ['applications', 'open'], // Applications support open science.
-  ['statistics', 'open'] // Reproducibility also connects to statistics.
+  ['statistics', 'open'], // Reproducibility also connects to statistics.
+  ['statistics', 'regression'], // Editable research connection.
+  ['regression', 'bayes'], // Editable research connection.
+  ['statistics', 'experiments'], // Editable research connection.
+  ['bayes', 'simulation'], // Editable research connection.
+  ['statistics', 'simulation'], // Editable research connection.
+  ['ml', 'optimization'], // Editable research connection.
+  ['optimization', 'deep'], // Editable research connection.
+  ['ml', 'nlp'], // Editable research connection.
+  ['ml', 'deep'], // Editable research connection.
+  ['ml', 'prediction'], // Editable research connection.
+  ['prediction', 'regression'], // Editable research connection.
+  ['ml', 'networks'], // Editable research connection.
+  ['networks', 'nlp'], // Editable research connection.
+  ['applications', 'pharmaco'], // Editable research connection.
+  ['pharmaco', 'epidemiology'], // Editable research connection.
+  ['statistics', 'epidemiology'], // Editable research connection.
+  ['applications', 'reproducibility'], // Editable research connection.
+  ['reproducibility', 'open'], // Editable research connection.
+  ['applications', 'prediction'], // Editable research connection.
+  ['bayes', 'pharmaco'], // Editable research connection.
+  ['causality', 'epidemiology'] // Editable research connection.
 ];
 const graphSvg = document.getElementById('research-graph'); // SVG surface for the interactive graph.
 const graphReset = document.getElementById('network-reset'); // Button for restoring graph positions.
@@ -283,7 +314,7 @@ function selectGraphNode(id) {
   graphSelected = mainNode.id;
   graphShapes.forEach((shape, key) => { shape.group.classList.toggle('active', key === graphSelected); });
   graphLines.forEach(edge => { edge.element.classList.toggle('emphasized', edge.from === graphSelected || edge.to === graphSelected); });
-  graphDetailIndex.textContent = String(mainNode.key).padStart(2, '0') + ' / RESEARCH';
+  graphDetailIndex.textContent = 'RESEARCH';
   graphDetailTitle.textContent = graphLabel(mainNode);
   graphDetailDescription.textContent = translations[document.documentElement.lang]['research' + mainNode.key + 'Description'];
 }

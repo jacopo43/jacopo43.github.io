@@ -1,3 +1,0 @@
-Inserisci qui il tuo curriculum in PDF e rinominalo CV.pdf.
-Poi apri script.js, vai alla fine e rimuovi il blocco di codice cvLink.addEventListener('click', ...);
-Altrimenti il pulsante CV mostra solo un avviso per evitare link inesistenti.
