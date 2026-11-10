@@ -11,17 +11,17 @@ const translations = {
     navContact:"Contatti",
     // eyebrow:"Portfolio accademico · Disponibile per collaborazioni",
     hello:"Ciao, sono",
-    role:"Ricerca · Statistica · Data Science",
+    role:"Dottorando in H&T",
     heroDescription:"Studio come trasformare dati complessi in conoscenza affidabile, combinando metodi statistici, machine learning e ricerca interdisciplinare.",
-    explore:"Esplora la ricerca",
+    explore:"Interessi di ricerca",
     scroll:"Scopri di più",
     aboutTitle:"About me<span class='accent'>.</span>",
     aboutP1:"Sono dottorando in Health & Technologies all’Università di Bologna, dove mi occupo di farmacovigilanza e di metodi statistici e computazionali per individuare segnali di interazioni tra farmaci.",
-    aboutP2:"Il mio percorso unisce statistica, data science e ricerca biomedica. Dopo le esperienze di studio e ricerca in Belgio, ho lavorato come assegnista di ricerca presso il <a href=\"https://dibinem.unibo.it/it\" target=\"_blank\" rel=\"noopener noreferrer\">Dipartimento di Scienze Biomediche e Neuromotorie (DiBiNem)</a> dell’Università di Bologna.",
-    getInTouch:"Parliamone",
+    aboutP2:"Il mio percorso unisce statistica, data science e ricerca biomedica. Dopo le esperienze di studio e ricerca in Belgio, ho lavorato come assegnista di ricerca presso il Dipartimento di Scienze Biomediche e Neuromotorie (DiBiNem) dell’Università di Bologna.",
+    getInTouch:"Collaboriamo",
     factLocation:"Sede",
     factArea:"Ambiti",
-    factAreaValue:"Statistica · AI · Ricerca",
+    factAreaValue:"Statistica · ML · Interazioni Farmaco-Farmaco",
     factAffiliation:"Affiliazione",
     factAffiliationValue:"Università di Bologna · <a href=\"https://ingegneriaindustriale.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIN</a> / <a href=\"https://dimec.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIMEC</a>",
     factEmail:"Email",
@@ -31,7 +31,7 @@ const translations = {
     phdDescription:"Dottorato in <a href=\"https://phd.unibo.it/hat/en\" target=\"_blank\" rel=\"noopener noreferrer\">Health &amp; Technologies</a>, con affiliazione ai dipartimenti <a href=\"https://ingegneriaindustriale.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIN</a> e <a href=\"https://dimec.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIMEC</a> dell’Università di Bologna. Progetto di ricerca: <em>Drug–Drug Interaction Signal Detection in Pharmacovigilance: Causal-Informed Statistical and Computational Methods for Spontaneous Reporting Data</em>.", // Testo per la sezione About.
     fellowRole:"Assegnista di ricerca · Università di Bologna", // Testo per la sezione About.
     fellowDescription:"Attività di ricerca presso il <a href=\"https://dibinem.unibo.it/it\" target=\"_blank\" rel=\"noopener noreferrer\">Dipartimento di Scienze Biomediche e Neuromotorie (DiBiNem)</a> dell’Università di Bologna, dalla raccolta e analisi dei dati alla preparazione di articoli scientifici.", // Testo per la sezione About.
-    thesisRole:"Tesi magistrale · <a href=\"https://www.ulb.be/\" target=\"_blank\" rel=\"noopener noreferrer\">ULB</a>, Bruxelles", // Testo per la sezione About.
+    thesisRole:"Tesi magistrale · ULB, Bruxelles", // Testo per la sezione About.
     thesisDescription:"Analisi e miglioramento di un metodo di inferenza causale per dati temporali (serie storiche), presso il <a href=\"https://mlg.ulb.ac.be/\" target=\"_blank\" rel=\"noopener noreferrer\">Machine Learning Group (MLG)</a> della <a href=\"https://www.ulb.be/\" target=\"_blank\" rel=\"noopener noreferrer\">Université libre de Bruxelles (ULB)</a>.", // Testo per la sezione About.
     erasmusRole:"Erasmus · <a href=\"https://uclouvain.be/fr\" target=\"_blank\" rel=\"noopener noreferrer\">UCLouvain</a>, Louvain-la-Neuve", // Testo per la sezione About.
     erasmusDescription:"Partecipazione a progetti di ricerca di gruppo nell’analisi dei dati e nel machine learning.", // Testo per la sezione About.
@@ -63,7 +63,7 @@ const translations = {
     project3Description:"Un'interfaccia intuitiva per esplorare i risultati e supportare le decisioni.",
     viewProject:"Vedi il progetto",
     publicationsTitle:"Pubblicazioni<span class='accent'>.</span>",
-    contactTitle:"Costruiamo qualcosa <em>insieme.</em>",
+    contactTitle:"Condividiamo la ricerca <em>.</em>",
     contactDescription:"Hai un'idea di ricerca, una proposta di collaborazione o semplicemente una domanda? Scrivimi.",
     writeEmail:"Scrivimi un'email",
     footer:"Creato con cura, pubblicato con GitHub Pages.",
@@ -78,17 +78,17 @@ const translations = {
     navContact:"Contact",
     // eyebrow:"Academic portfolio · Open to collaborations",
     hello:"Hello, I'm",
-    role:"Research · Statistics · Data Science",
+    role:"PhD candidate in H&T",
     heroDescription:"I explore how to turn complex data into reliable knowledge by combining statistical methods, machine learning and interdisciplinary research.",
-    explore:"Explore research",
+    explore:"Research interests",
     scroll:"Explore more",
     aboutTitle:"About me<span class='accent'>.</span>",
     aboutP1:"I am a PhD candidate in Health & Technologies at the University of Bologna, researching pharmacovigilance and statistical and computational methods for detecting drug–drug interaction signals.",
-    aboutP2:"My background combines statistics, data science, and biomedical research. Following study and research experiences in Belgium, I worked as a research fellow at the <a href=\"https://dibinem.unibo.it/it\" target=\"_blank\" rel=\"noopener noreferrer\">Department of Biomedical and Neuromotor Sciences (DiBiNem)</a>, University of Bologna.",
+    aboutP2:"My background combines statistics, data science, and biomedical research. Following study and research experiences in Belgium, I worked as a research fellow at the Department of Biomedical and Neuromotor Sciences (DiBiNem), University of Bologna.",
     getInTouch:"Let's connect",
     factLocation:"Based in",
     factArea:"Fields",
-    factAreaValue:"Statistics · AI · Research",
+    factAreaValue:"Statistics · ML · Drug-Drug interactions",
     factAffiliation:"Affiliation",
     factAffiliationValue:"University of Bologna · <a href=\"https://ingegneriaindustriale.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIN</a> / <a href=\"https://dimec.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIMEC</a>",
     factEmail:"Email",
@@ -98,7 +98,7 @@ const translations = {
     phdDescription:"PhD in <a href=\"https://phd.unibo.it/hat/en\" target=\"_blank\" rel=\"noopener noreferrer\">Health &amp; Technologies</a>, affiliated with the University of Bologna’s <a href=\"https://ingegneriaindustriale.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIN</a> and <a href=\"https://dimec.unibo.it/it/index.html\" target=\"_blank\" rel=\"noopener noreferrer\">DIMEC</a> departments. Research project: <em>Drug–Drug Interaction Signal Detection in Pharmacovigilance: Causal-Informed Statistical and Computational Methods for Spontaneous Reporting Data</em>.", // About section translation.
     fellowRole:"Research fellow · University of Bologna", // About section translation.
     fellowDescription:"Research projects at the <a href=\"https://dibinem.unibo.it/it\" target=\"_blank\" rel=\"noopener noreferrer\">Department of Biomedical and Neuromotor Sciences (DiBiNem)</a>, University of Bologna, including data collection, analysis, and preparation of scientific publications.", // About section translation.
-    thesisRole:"Master’s thesis · <a href=\"https://www.ulb.be/\" target=\"_blank\" rel=\"noopener noreferrer\">ULB</a>, Brussels", // About section translation.
+    thesisRole:"Master’s thesis · ULB, Brussels", // About section translation.
     thesisDescription:"Analysing and improving a causal inference method for temporal data (time series) at the <a href=\"https://mlg.ulb.ac.be/\" target=\"_blank\" rel=\"noopener noreferrer\">Machine Learning Group (MLG)</a> of the <a href=\"https://www.ulb.be/\" target=\"_blank\" rel=\"noopener noreferrer\">Université libre de Bruxelles (ULB)</a>.", // About section translation.
     erasmusRole:"Erasmus · <a href=\"https://uclouvain.be/fr\" target=\"_blank\" rel=\"noopener noreferrer\">UCLouvain</a>, Louvain-la-Neuve", // About section translation.
     erasmusDescription:"Participation in group research projects in data analysis and machine learning.", // About section translation.
@@ -180,19 +180,18 @@ function setTheme(theme) {
 
 /* Restore saved user preferences, falling back to Italian and light mode. */
 let savedLang = 'it'; // Default language.
-let savedTheme = 'light'; // Default colour theme.
+let savedTheme = 'dark'; // Default colour theme.
 try {
   savedLang = localStorage.getItem('site-language') || 'it'; // Read previously saved language.
-  savedTheme = localStorage.getItem('site-theme') || 'light'; // Read previously saved theme.
+  savedTheme = 'dark'; // Read previously saved theme.
 } catch (_) {
   // Keep the defaults if browser storage is unavailable.
 }
 setLanguage(savedLang === 'en' ? 'en' : 'it'); // Apply the initial language.
-setTheme(savedTheme === 'dark' ? 'dark' : 'light'); // Apply the initial theme.
+document.documentElement.dataset.theme = 'dark'; // Apply dark theme permanently.
 
 /* Wire the existing header controls without changing their behaviour. */
 languageButton.addEventListener('click', () => setLanguage(document.documentElement.lang === 'it' ? 'en' : 'it')); // Toggle between Italian and English.
-themeButton.addEventListener('click', () => setTheme(document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark')); // Toggle light/dark mode.
 menuButton.addEventListener('click', () => { // Open or close mobile navigation.
   const isOpen = nav.classList.toggle('open'); // Update menu visibility.
   menuButton.setAttribute('aria-expanded', String(isOpen)); // Keep the accessible state in sync.

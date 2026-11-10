@@ -22,7 +22,7 @@
   --line:#2b4155;
   --primary:#61c6dd;
   --primary-deep:#319db4;
-  --accent:#55dfc3;
+  --accent: #c4b5fd; /* Pastel lavender accent */
   --shadow:0 22px 70px rgba(0,0,0,.2);
   --nav-bg:rgba(11,20,33,.88);
 }
@@ -255,7 +255,7 @@ h1,h2,h3 {
 }
 
 h1 {
-  font-size: clamp(36px, 5vw, 65px);
+  font-size: clamp(26px, 4vw, 45px);
   letter-spacing:-5px;
   line-height:1.08;
   margin:8px 0 20px;
@@ -438,7 +438,7 @@ h1 {
 }
 
 .section-heading h2 {
-  font-size:clamp(34px,4.4vw,53px);
+  font-size:clamp(24px,3.4vw,33px);
   letter-spacing:-2.3px;
   margin:0;
 }
@@ -742,13 +742,13 @@ h1 {
 }
 
 .contact-panel h2 {
-  font-size:clamp(37px,4.5vw,58px);
+  font-size:clamp(17px,2.5vw,28px);
   letter-spacing:-2px;
 }
 
 .contact-panel h2 em {
   font-style:normal;
-  color:#9bf6da;
+  color: #c4b5fd;
 }
 
 .contact-panel p {
@@ -765,7 +765,7 @@ h1 {
 
 .contact-orbit {
   font-size:33px;
-  color:#abf1df;
+  color: #c4b5fd;
 }
 
 .contact-decoration {
@@ -1162,7 +1162,8 @@ h1 {
 }
 
 .button-primary {
-  background: var(--primary-deep);
+  background: #c4b5fd; /* Pastel lavender background */
+  color: #171c1b; /* Dark text for readability */
   box-shadow: none;
 }
 
@@ -1231,20 +1232,19 @@ h1 {
 
 .contact-panel {
   border-radius: 7px;
-  background: #3e5650;
+  background: #514566; /* Muted dark lavender */
   padding: 58px 62px;
 }
 
 .contact-panel h2 em {
-  color: #e3d4bf;
+  color: #c4b5fd; /* Pastel lavender */
 }
-
 .contact-panel p {
   color: #e0e6df;
 }
 
 .button-light {
-  color: #32443f;
+  color: #514566; /* Purple text instead of dark green */
 }
 
 .contact-section {
@@ -1279,7 +1279,7 @@ h1 {
   background: none;
   border: 0;
   padding: 4px 0;
-  color: var(--primary);
+  color: #c4b5fd;
   font-size: 12px;
   font-weight: 600;
   text-decoration: underline;
@@ -1504,4 +1504,12 @@ h1 {
 .about-copy a:not(.text-link):hover,
 .facts-card strong a:hover {
   color: var(--primary-deep); /* Indicate links on hover. */
+}
+
+/* Logo displayed in the header and footer. */
+.site-logo {
+  width: 42px; /* Logo width. */
+  height: 42px; /* Logo height. */
+  object-fit: contain; /* Preserve the original image proportions. */
+  display: block; /* Avoid unwanted inline spacing. */
 }

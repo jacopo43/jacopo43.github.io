@@ -36,9 +36,9 @@
   const palette = () => { // Select colors that fit the existing light and dark themes.
     const dark = document.documentElement.dataset.theme === "dark"; // Read the theme already managed by script.js.
     return { // Supply low-contrast academic colors rather than bright neon effects.
-      link: dark ? "115, 155, 145" : "67, 104, 96", // Set the RGB color of the network edges.
-      dot: dark ? "167, 198, 188" : "67, 104, 96", // Set the RGB color of the node centers.
-      hover: dark ? "100, 255, 190" : "0, 115, 85" // More saturated green on hover.
+      link: dark ? "160, 150, 194" : "67, 104, 96", 
+      dot: dark ? "174, 163, 206" : "67, 104, 96",
+      hover: dark ? "196, 181, 253" : "0, 115, 85" // Pastel purple when hovering in dark mode.
     }; // Finish the palette object.
   }; // End the theme palette helper.
 
